@@ -12,8 +12,8 @@
       "destination": "/public/build/:match*"
     },
     {
-      "src": "/:match*",
-      "dest": "/api/index.php"
+      "source": "/:match*",
+      "destination": "/api/index.php"
     }
   ],
   "env": {
