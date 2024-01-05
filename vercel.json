@@ -8,7 +8,7 @@
   },
   "rewrites": [
     {
-      "source": "/api/assets",
+      "source": "/assets",
       "destination": "/api/assets.js"
     },
     {
