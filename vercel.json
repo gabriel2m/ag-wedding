@@ -1,6 +1,4 @@
 {
-  "buildCommand": "npm run prod",
-  "outputDirectory": "public/build",
   "builds": [
     {
       "src": "/api/*.php",
