@@ -12,7 +12,7 @@
       "destination": "/public/build/:match*"
     },
     {
-      "source": "/:match*",
+      "source": "/(.*)",
       "destination": "/api/index.php"
     }
   ],
