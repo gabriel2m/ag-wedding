@@ -11,8 +11,8 @@ class RedirectIfAsset
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (File::exists(public_path($request->path()))) {
-            return redirect('assets');
+        if (File::isFile(public_path($request->path()))) {
+            return redirect('/assets/' . $request->path());
         }
 
         return $next($request);
