@@ -6,11 +6,12 @@
         "prod": "vite build"
     },
     "devDependencies": {
-        "axios": "^1.6.1",
         "laravel-vite-plugin": "^1.0.0",
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "express": "^4.18.2"
+        "alpinejs": "^3.13.3",
+        "express": "^4.18.2",
+        "htmx.org": "^1.9.10"
     }
 }
