@@ -9,11 +9,11 @@
   "routes": [
     {
       "src": "/favicon.png",
-      "dest": "public/favicon.png"
+      "dest": "/public/favicon.png"
     },
     {
       "src": "/build/(.*)",
-      "dest": "public/build/$1"
+      "dest": "/public/build/$1"
     },
     {
       "src": "/(.*)",
