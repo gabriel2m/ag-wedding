@@ -8,8 +8,8 @@
   },
   "rewrites": [
     {
-      "source": "/assets/(.*)",
-      "destination": "/api/assets.js"
+      "source": "/static/(.*)",
+      "destination": "/api/static.js"
     },
     {
       "source": "/(.*)",
