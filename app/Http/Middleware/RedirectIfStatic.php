@@ -13,7 +13,7 @@ class RedirectIfStatic
     public function handle(Request $request, Closure $next): Response
     {
         if (File::isFile(public_path($request->path()))) {
-            return redirect(to: '/static/' . $request->path(), secure: App::isProduction());
+            return redirect(to: '/static/' . $request->path(), secure: true);
         }
 
         return $next($request);
