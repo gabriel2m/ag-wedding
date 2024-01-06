@@ -47,7 +47,6 @@
             "@php artisan key:generate --ansi"
         ],
         "vercel": [
-            "npm run prod",
             "@php artisan migrate"
         ]
     },
