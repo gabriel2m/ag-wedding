@@ -13,8 +13,8 @@ class RedirectIfStatic
     {
         if (File::isFile(public_path($request->path()))) {
             return redirect(
-                to: '/static/' . $request->path(),
-                secure: true
+                to: asset($request->path()),
+                secure: $request->secure()
             );
         }
 
