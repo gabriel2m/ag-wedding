@@ -14,16 +14,17 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind('db.connector.pgsql', function () {
-            return new class extends PostgresConnector {
+            return new class extends PostgresConnector
+            {
                 protected function getDsn(array $config)
                 {
                     $dsn = parent::getDsn($config);
 
-                    if (!config('database.connections.pgsql.add_endpoint_id')) {
+                    if (! config('database.connections.pgsql.add_endpoint_id')) {
                         return $dsn;
                     }
 
-                    return $dsn . ';options=endpoint=' . Str::before($config['host'], '.');
+                    return $dsn.';options=endpoint='.Str::before($config['host'], '.');
                 }
             };
         });

@@ -76,7 +76,7 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
-            'add_endpoint_id' => env('PG_ADD_ENDPOINT_ID', false)
+            'add_endpoint_id' => env('PG_ADD_ENDPOINT_ID', false),
         ],
 
         'sqlsrv' => [

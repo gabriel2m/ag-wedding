@@ -5,10 +5,11 @@ namespace App\Console\Commands;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Console\Command;
 use Illuminate\Validation\ValidationException;
-use function Laravel\Prompts\text;
-use function Laravel\Prompts\password;
-use function Laravel\Prompts\outro;
+
 use function Laravel\Prompts\error;
+use function Laravel\Prompts\outro;
+use function Laravel\Prompts\password;
+use function Laravel\Prompts\text;
 
 class CreateUserCommand extends Command
 {
@@ -45,8 +46,9 @@ class CreateUserCommand extends Command
                     error("$attr: $error");
                 }
             }
+
             return 1;
         }
-        outro(trans("Created."));
+        outro(trans('Created.'));
     }
 }
