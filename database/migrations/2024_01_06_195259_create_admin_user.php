@@ -2,6 +2,7 @@
 
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Str;
 
 use function Laravel\Prompts\outro;
 
@@ -14,7 +15,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $password = fake()->password();
+        $password = Str::password(8);
         $action = new CreateNewUser;
         $action->create([
             'name' => 'admin',
