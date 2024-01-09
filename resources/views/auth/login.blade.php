@@ -7,11 +7,11 @@
 @section('content')
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img class="mx-auto h-44 w-auto" src="{{ asset('images/login-logo.png') }}">
+            <img class="mx-auto h-32 w-auto" src="{{ asset('images/login-logo.png') }}">
         </div>
 
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="login" method="POST">
+            <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
