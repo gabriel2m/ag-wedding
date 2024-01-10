@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Database\Connectors\PostgresConnector;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -35,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Vite::macro('image', fn (string $image) => Vite::asset("resources/images/{$image}"));
     }
 }
