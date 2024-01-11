@@ -1,6 +1,6 @@
 <?php
 
-use App\Actions\Fortify\CreateNewUser;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Str;
 
@@ -8,22 +8,18 @@ use function Laravel\Prompts\outro;
 
 return new class extends Migration
 {
-    public const EMAIL = 'admin@admin.com';
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         $password = Str::password(8);
-        $action = new CreateNewUser;
-        $action->create([
+        User::factory()->create([
             'name' => 'admin',
-            'email' => self::EMAIL,
+            'email' => User::DEFAULT_ADMIN_EMAIL,
             'password' => $password,
-            'password_confirmation' => $password,
         ]);
-        outro('Email: '.self::EMAIL);
+        outro('Email: '.User::DEFAULT_ADMIN_EMAIL);
         outro(trans('Password').": $password");
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table('users')->where('email', self::EMAIL)->delete();
+        User::query()->where('email', User::DEFAULT_ADMIN_EMAIL)->delete();
     }
 };

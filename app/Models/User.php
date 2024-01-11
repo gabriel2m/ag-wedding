@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const DEFAULT_ADMIN_EMAIL = 'admin@admin.com';
+
     /**
      * The attributes that are mass assignable.
      *
