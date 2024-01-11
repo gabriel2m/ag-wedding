@@ -21,7 +21,7 @@ it('cant access when authenticated', function () {
         ->assertRedirect(RouteServiceProvider::HOME);
 });
 
-it('validates email', function () {
+it('dont authenticate with wrong email', function () {
     $password = fake()->password();
     User::factory()->create(compact('password'));
 
@@ -30,12 +30,35 @@ it('validates email', function () {
         'password' => $password,
     ])
         ->assertRedirect()
-        ->assertSessionHasErrors('email');
+        ->assertSessionHasInput('email')
+        ->assertSessionHasErrors('email')
+        ->assertSessionDoesntHaveErrors('password');
+
+    expect(Session::hasOldInput('password'))->toBeFalse(
+        "password should not be stored"
+    );
 
     assertGuest();
 });
 
-it('validates password', function () {
+it('successful renders after wrong email', function () {
+    $data = [
+        'email' => fake()->email(),
+        'password' => fake()->password(),
+    ];
+
+    User::factory()->create(Arr::only($data, 'password'));
+
+    test()
+        ->fromRoute('login')
+        ->followingRedirects()
+        ->post(route('login'), $data)
+        ->assertViewIs('auth.login')
+        ->assertSee("value=\"{$data['email']}\"", false)
+        ->assertSee(trans('auth.failed'));
+});
+
+it('dont authenticate with wrong password', function () {
     $user = User::factory()->create();
 
     post(route('login'), [
@@ -43,10 +66,30 @@ it('validates password', function () {
         'password' => fake()->password(),
     ])
         ->assertRedirect()
+        ->assertSessionHasInput('email')
         ->assertSessionHasErrors('email')
         ->assertSessionDoesntHaveErrors('password');
 
+    expect(Session::hasOldInput('password'))->toBeFalse(
+        "password should not be stored"
+    );
+
     assertGuest();
+});
+
+it('successful renders after wrong password', function () {
+    $user = User::factory()->create();
+
+    test()
+        ->fromRoute('login')
+        ->followingRedirects()
+        ->post(route('login'), [
+            'email' => $user->email,
+            'password' => fake()->password(),
+        ])
+        ->assertViewIs('auth.login')
+        ->assertSee("value=\"$user->email\"", false)
+        ->assertSee(trans('auth.failed'));
 });
 
 it('can authenticate', function () {
