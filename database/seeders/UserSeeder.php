@@ -16,6 +16,6 @@ class UserSeeder extends Seeder
             'name' => 'gabriel2m',
             'email' => 'gabriel2m.contact@gmail.com',
             'password' => '12345',
-        ]);
+        ])->givePermissionTo('admin.*');
     }
 }
