@@ -21,6 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::name('admin.home')->get('/', function () {
             return view('admin.home');
-        });
+        })->can('admin.home');
     });
 });
