@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('app');
+    return to_route('admin.home');
+})->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::name('admin.home')->get('/', function () {
+            return view('admin.home');
+        });
+    });
 });
