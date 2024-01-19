@@ -1,5 +1,5 @@
-<small class="text-red-500">
-    @error($attr)
+@error($name)
+    <small class="text-red-500">
         {{ $message }}
-    @enderror
-</small>
+    </small>
+@enderror
