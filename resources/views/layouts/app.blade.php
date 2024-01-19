@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="{{ Vite::image('favicon.png') }}">
 
-    @php
-        $title[] = config('app.name');
-    @endphp
-    <title>{{ implode(' | ', $title) }}</title>
+    <title>{{ title($title ?? []) }}</title>
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
