@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Facades\App\Models\User as UserFacade;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -25,7 +26,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'string',
                 'email',
                 'max:255',
-                Rule::unique(User::table())->ignore($user->id),
+                Rule::unique(UserFacade::getTable())->ignore($user->id),
             ],
         ])->validateWithBag('updateProfileInformation');
 

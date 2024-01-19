@@ -13,14 +13,14 @@ use function Pest\Laravel\post;
 
 uses()->group('reset-password');
 
-function userPasswordHash(string $email): string
+function userPasswordHash(User $user): string
 {
-    return DB::table(User::table())->where('email', $email)->value('password');
+    return DB::table($user->getTable())->where('email', $user->email)->value('password');
 }
 
-function passwordDidNotChange(string $password_hash, string $email): void
+function passwordDidNotChange(User $user): void
 {
-    expect(userPasswordHash($email))->toBe($password_hash);
+    expect(userPasswordHash($user))->toBe($user->password);
 }
 
 it('successfully renders reset-password', function () {
@@ -96,7 +96,7 @@ it('requires a valid token', function () {
         ->assertRedirect()
         ->assertSessionHasErrors('email');
 
-    passwordDidNotChange($user->password, $user->email);
+    passwordDidNotChange($user);
 });
 
 it('successfully renders reset-password after invalid token', function () {
@@ -133,7 +133,7 @@ it('requires a valid password', function (string $password) {
         ->assertRedirect()
         ->assertSessionHasErrors('password');
 
-    passwordDidNotChange($user->password, $user->email);
+    passwordDidNotChange($user);
 })->with([
     'empty' => '',
     'short' => '1234',
@@ -151,7 +151,7 @@ it('requires a valid password_confirmation', function () {
         ->assertRedirect()
         ->assertSessionHasErrors('password');
 
-    passwordDidNotChange($user->password, $user->email);
+    passwordDidNotChange($user);
 });
 
 it('successfully renders reset-password after invalid password', function () {
@@ -187,7 +187,7 @@ it('successfully reset password', function () {
         ->assertRedirect()
         ->assertSessionHasNoErrors();
 
-    expect(Hash::check($password, userPasswordHash($user->email)))->toBeTrue();
+    expect(Hash::check($password, userPasswordHash($user)))->toBeTrue();
 });
 
 it('successfully renders login after reset password', function () {
