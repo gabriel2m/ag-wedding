@@ -14,7 +14,7 @@
     @stack('styles')
 </head>
 
-<body hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}' class="h-full">
+<body hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}' class="h-full text-slate-800">
     @yield('content')
 
     @vite('resources/js/app.js')
