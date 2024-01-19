@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Testing\TestResponse;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -50,3 +52,22 @@ function something()
 {
     // ..
 }
+
+TestResponse::macro('assertSeeTitle', function (array|string $sections) {
+    return $this->assertSee(sprintf('<title>%s</title>', title($sections)), false);
+});
+
+TestResponse::macro('assertSeeLink', function (string $url) {
+    return $this->assertSee("href=\"$url\"", false);
+});
+
+TestResponse::macro('assertSeeForm', function (string $action, string $method = 'POST') {
+    return $this->assertSee("method=\"$method\" action=\"$action\"", false);
+});
+
+TestResponse::macro('assertSeeInput', function (string $name, ?string $value = null) {
+    return $this->assertSeeInOrder([
+        $value ? "value=\"$value\"" : '',
+        "name=\"$name\"",
+    ], false);
+});

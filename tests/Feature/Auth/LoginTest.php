@@ -9,19 +9,28 @@ use function Pest\Laravel\assertGuest;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-it('shows login view', function () {
+uses()->group('login');
+
+it('successfully renders login', function () {
     get(route('login'))
         ->assertSuccessful()
-        ->assertViewIs('auth.login');
+        ->assertViewIs('auth.login')
+        ->assertSeeTitle('Login')
+        ->assertSeeForm(route('login'))
+        ->assertSeeInput('_token')
+        ->assertSeeInput('email')
+        ->assertSeeInput('password')
+        ->assertSeeInput('remember')
+        ->assertSeeLink(route('password.request'));
 });
 
 it('cant access when authenticated', function () {
-    actingAs(User::factory()->makeOne())
+    actingAs(User::factory()->create())
         ->get(route('login'))
         ->assertRedirect(RouteServiceProvider::HOME);
 });
 
-it('dont authenticate with wrong email', function () {
+it('requires a valid email', function () {
     $password = fake()->password();
     User::factory()->create(compact('password'));
 
@@ -30,18 +39,13 @@ it('dont authenticate with wrong email', function () {
         'password' => $password,
     ])
         ->assertRedirect()
-        ->assertSessionHasInput('email')
         ->assertSessionHasErrors('email')
         ->assertSessionDoesntHaveErrors('password');
-
-    expect(Session::hasOldInput('password'))->toBeFalse(
-        "password should not be stored"
-    );
 
     assertGuest();
 });
 
-it('successful renders after wrong email', function () {
+it('successfully renders login after wrong email', function () {
     $data = [
         'email' => fake()->email(),
         'password' => fake()->password(),
@@ -54,11 +58,12 @@ it('successful renders after wrong email', function () {
         ->followingRedirects()
         ->post(route('login'), $data)
         ->assertViewIs('auth.login')
-        ->assertSee("value=\"{$data['email']}\"", false)
-        ->assertSee(trans('auth.failed'));
+        ->assertSeeInput('email', $data['email'])
+        ->assertSee(trans('auth.failed'))
+        ->assertDontSee($data['password']);
 });
 
-it('dont authenticate with wrong password', function () {
+it('requires a valid password', function () {
     $user = User::factory()->create();
 
     post(route('login'), [
@@ -66,33 +71,31 @@ it('dont authenticate with wrong password', function () {
         'password' => fake()->password(),
     ])
         ->assertRedirect()
-        ->assertSessionHasInput('email')
         ->assertSessionHasErrors('email')
         ->assertSessionDoesntHaveErrors('password');
-
-    expect(Session::hasOldInput('password'))->toBeFalse(
-        "password should not be stored"
-    );
 
     assertGuest();
 });
 
-it('successful renders after wrong password', function () {
-    $user = User::factory()->create();
+it('successfully renders login after wrong password', function () {
+    $data = [
+        'email' => fake()->email(),
+        'password' => fake()->password(),
+    ];
+
+    User::factory()->create(Arr::only($data, 'email'));
 
     test()
         ->fromRoute('login')
         ->followingRedirects()
-        ->post(route('login'), [
-            'email' => $user->email,
-            'password' => fake()->password(),
-        ])
+        ->post(route('login'), $data)
         ->assertViewIs('auth.login')
-        ->assertSee("value=\"$user->email\"", false)
-        ->assertSee(trans('auth.failed'));
+        ->assertSeeInput('email', $data['email'])
+        ->assertSee(trans('auth.failed'))
+        ->assertDontSee($data['password']);
 });
 
-it('can authenticate', function () {
+it('successfully authenticate', function () {
     $user = User::factory()->create($data = [
         'email' => fake()->email(),
         'password' => fake()->password(),
