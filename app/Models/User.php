@@ -7,10 +7,23 @@ use App\Models\Traits\TableName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property Carbon $email_verified_at
+ * @property string $password
+ * @property string $remember_token
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property string $two_factor_secret
+ * @property string $two_factor_recovery_codes
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasPermissions, HasRoles, Notifiable, TableName;
