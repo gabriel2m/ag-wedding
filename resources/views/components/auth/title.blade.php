@@ -1,3 +1,1 @@
-<x-h3>
-    {{ $slot }}
-</x-h3>
+<x-h3 :attributes="$attributes" />

@@ -1,5 +1,10 @@
-<svg zoomAndPan="magnify" viewBox="0 0 156.25 128.125" preserveAspectRatio="xMidYMid" version="1.0" id="svg7"
-    xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" {{ $attributes }}>
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+    {{ $attributes->merge([
+        'id' => 'svg7',
+        'preserveAspectRatio' => 'xMidYMid',
+        'zoomAndPan' => 'magnify',
+        'viewBox' => '0 0 156.25 128.125',
+    ]) }}>
     <defs id="defs1">
         <g id="g1" />
     </defs>

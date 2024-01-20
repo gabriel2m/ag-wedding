@@ -1,3 +1,5 @@
+@props(['text'])
+
 <button {{ $attributes }}>
-    {{ trans($slot->toHtml()) }}
+    {{ trans($text) }}
 </button>

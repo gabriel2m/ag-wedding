@@ -1,3 +1,5 @@
+@props(['text'])
+
 <h3 {{ $attributes }}>
-    {{ trans($slot->toHtml()) }}
+    {{ trans($text) }}
 </h3>

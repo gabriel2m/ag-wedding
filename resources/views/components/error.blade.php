@@ -1,5 +1,7 @@
+@props(['name'])
+
 @error($name)
-    <small class="text-red-500">
+    <small {{ $attributes->class(['text-red-500']) }}>
         {{ $message }}
     </small>
 @enderror
