@@ -28,6 +28,6 @@
             </div>
         </div>
 
-        <x-auth.button text="Sign in" />
+        <x-auth.text-button text="Sign in" />
     </x-auth.form>
 @endsection

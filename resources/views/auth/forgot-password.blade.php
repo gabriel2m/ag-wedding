@@ -18,6 +18,6 @@
             </div>
         </div>
 
-        <x-auth.button text="Send" />
+        <x-auth.text-button text="Send" />
     </x-auth.form>
 @endsection

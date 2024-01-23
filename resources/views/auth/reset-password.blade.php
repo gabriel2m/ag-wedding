@@ -26,6 +26,6 @@
             <x-error name="password_confirmation" />
         </div>
 
-        <x-auth.button text="Reset" />
+        <x-auth.text-button text="Reset" />
     </x-auth.form>
 @endsection
