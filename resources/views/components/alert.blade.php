@@ -26,7 +26,7 @@
                     {{ $message }}
                 </div>
                 <div class="cursor-pointer" @click="open = false">
-                    <x-icons.x-mark class="h-5" />
+                    <x-heroicon-o-x-mark class="h-5" />
                 </div>
             </div>
         </div>

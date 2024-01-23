@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <x-icons.logo class="mx-auto h-32 fill-current" />
+    <x-icon-logo class="mx-auto h-32" />
 
     <x-auth.form action="{{ route('login') }}">
         <div>
