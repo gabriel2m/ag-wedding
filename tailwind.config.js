@@ -17,4 +17,7 @@ module.exports = {
   plugins: [
     forms
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 }

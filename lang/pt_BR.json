@@ -9,6 +9,7 @@
   "Reset password": "Redefinir senha",
   "Reset Password Notification": "Notificação de redefinição de senha",
   "Sign in": "Entrar",
+  "Sign out": "Sair",
   "Remembered your password?": "Lembrou sua senha?",
   "The :attribute must be at least :length characters and contain at least one uppercase character.": "O campo :attribute deve ter pelo menos :length e conter pelo menos um caractere maiúsculo.",
   "The :attribute must be at least :length characters and contain at least one number.": "O campo :attribute deve ter pelo menos :length caracteres e conter pelo menos um número.",
