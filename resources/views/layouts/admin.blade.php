@@ -17,7 +17,7 @@
 
         <header class="fixed z-30 flex h-16 w-full items-center bg-white py-2 pr-7 transition-all duration-300"
             :class="navOpen ? 'pl-[16.75rem]' : 'pl-7 sm:pl-[4.75rem]'">
-            <button class="group w-11 touch-none" title="Menu" @click="navOpen = ! navOpen">
+            <button class="group w-11 touch-none" title="Menu" @click="navOpen = ! navOpen" @click.stop>
                 <x-heroicon-o-bars-3 class="h-7 transition group-hover:text-gray-400" ::class="navOpen ? 'scale-x-150 translate-x-2 group-hover:scale-x-100 group-hover:translate-x-0' :
                     'group-hover:scale-x-150 group-hover:translate-x-2'" />
             </button>
@@ -30,7 +30,7 @@
         </header>
 
         <aside class="fixed z-40 h-screen bg-emerald-950 py-5 text-white transition-all duration-300 sm:px-2"
-            :class="navOpen ? 'w-60' : 'w-0 sm:w-12'" x-show="started">
+            :class="navOpen ? 'w-60' : 'w-0 sm:w-12'" @click.outside="if(sm) { navOpen = false }" x-show="started">
             <div class="h-36">
                 <a href="{{ route('admin.home') }}" class="mx-auto h-fit hover:text-emerald-900">
                     <x-icon-logo class="w-full transition-all duration-300" ::class="navOpen && 'px-16'" />
