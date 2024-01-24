@@ -19,13 +19,14 @@
   "env": {
     "APP_NAME": "Amanda e Gabriel",
     "APP_URL": "https://ag-wedding.vercel.app",
-    "APP_CONFIG_CACHE": "/tmp/laravel/config.php",
-    "APP_EVENTS_CACHE": "/tmp/laravel/events.php",
-    "APP_PACKAGES_CACHE": "/tmp/laravel/packages.php",
-    "APP_ROUTES_CACHE": "/tmp/laravel/routes.php",
-    "APP_SERVICES_CACHE": "/tmp/laravel/services.php",
-    "VIEW_COMPILED_PATH": "/tmp/laravel/views",
-    "LARAVEL_STORAGE_PATH": "/tmp/laravel/storage",
-    "LOG_CHANNEL": "stderr"
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_EVENTS_CACHE": "/tmp/events.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php",
+    "APP_SERVICES_CACHE": "/tmp/services.php",
+    "VIEW_COMPILED_PATH": "/tmp/views",
+    "LOG_CHANNEL": "stderr",
+    "CACHE_DRIVER": "array",
+    "SESSION_DRIVER": "array"
   }
 }
