@@ -61,7 +61,8 @@
             "@php ./vendor/bin/pint"
         ],
         "vercel": [
-            "@php artisan migrate --force"
+            "@php artisan migrate --force",
+            "npm run prod"
         ]
     },
     "extra": {
