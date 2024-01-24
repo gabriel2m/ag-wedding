@@ -53,3 +53,7 @@
         </main>
     </div>
 @overwrite
+
+@section('scripts')
+    @vite('resources/js/admin.js')
+@endsection
