@@ -1,13 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="h-full bg-gray-200" x-data="{ navOpen: false, started: false }" x-init="$nextTick(() => { started = true })">
+    <div class="h-full bg-gray-200" x-data="{
+        started: false,
+        navOpen: false,
+        sm: window.innerWidth < 641,
+        init() {
+            this.navOpen = !!Number(localStorage.getItem('navOpen') ?? !this.sm);
+        }
+    }" x-init="$nextTick(() => { started = true })"
+        x-effect="if(!sm) { localStorage.setItem('navOpen', Number(navOpen)) }">
         <div class="fixed z-50 flex h-full w-full bg-white" x-show="! started"
-            x-transition:leave="transition ease-in duration-300" x-transition:leave-end="opacity-0">
+            x-transition:leave="transition ease-in duration-400" x-transition:leave-end="opacity-0">
             <x-icon-logo class="m-auto h-10" />
         </div>
 
-        <div class="fixed z-30 flex h-16 w-full items-center bg-white py-2 pr-7 transition-all duration-300"
+        <header class="fixed z-30 flex h-16 w-full items-center bg-white py-2 pr-7 transition-all duration-300"
             :class="navOpen ? 'pl-[16.75rem]' : 'pl-7 sm:pl-[4.75rem]'">
             <button class="group w-11 touch-none" title="Menu" @click="navOpen = ! navOpen">
                 <x-heroicon-o-bars-3 class="h-7 transition group-hover:text-gray-400" ::class="navOpen ? 'scale-x-150 translate-x-2 group-hover:scale-x-100 group-hover:translate-x-0' :
@@ -19,10 +27,10 @@
                     | <x-heroicon-o-arrow-right class="h-5 transition group-hover:translate-x-1" />
                 </button>
             </x-form>
-        </div>
+        </header>
 
         <aside class="fixed z-40 h-screen bg-emerald-950 py-5 text-white transition-all duration-300 sm:px-2"
-            :class="navOpen ? 'w-60' : 'w-0 sm:w-12'">
+            :class="navOpen ? 'w-60' : 'w-0 sm:w-12'" x-show="started">
             <div class="h-36">
                 <a href="{{ route('admin.home') }}" class="mx-auto h-fit hover:text-emerald-900">
                     <x-icon-logo class="w-full transition-all duration-300" ::class="navOpen && 'px-16'" />
