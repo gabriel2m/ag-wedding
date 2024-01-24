@@ -25,8 +25,8 @@
     "APP_ROUTES_CACHE": "/tmp/routes.php",
     "APP_SERVICES_CACHE": "/tmp/services.php",
     "VIEW_COMPILED_PATH": "/tmp/views",
+    "LARAVEL_STORAGE_PATH": "/tmp/storage",
     "LOG_CHANNEL": "stderr",
-    "CACHE_DRIVER": "array",
-    "SESSION_DRIVER": "array"
+    "CACHE_DRIVER": "array"
   }
 }
