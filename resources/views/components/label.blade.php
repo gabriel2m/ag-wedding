@@ -1,5 +1,5 @@
 @props(['text'])
 
 <label {{ $attributes }}>
-    {{ trans($text) }}
+    @lang($text)
 </label>

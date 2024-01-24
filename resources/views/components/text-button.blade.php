@@ -1,5 +1,5 @@
 @props(['text'])
 
 <button {{ $attributes }}>
-    {{ trans($text) }}
+    @lang($text)
 </button>

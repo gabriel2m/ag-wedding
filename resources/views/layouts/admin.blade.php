@@ -15,7 +15,7 @@
             </button>
 
             <x-form action="{{ route('logout') }}" method="POST" class="ml-auto">
-                <button type="submit" class="group flex items-center hover:text-gray-400" title="{{ trans('Sign out') }}">
+                <button type="submit" class="group flex items-center hover:text-gray-400" title="@lang('Sign out')">
                     | <x-heroicon-o-arrow-right class="h-5 transition group-hover:translate-x-1" />
                 </button>
             </x-form>
@@ -41,7 +41,7 @@
 
                         <span class="ml-3 text-nowrap transition-all duration-300"
                             :class="navOpen || '-translate-x-32 opacity-0'">
-                            {{ trans($item['label']) }}
+                            @lang($link['label'])
                         </span>
                     </a>
                 @endforeach
