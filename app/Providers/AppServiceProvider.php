@@ -6,6 +6,7 @@ use Illuminate\Database\Connectors\PostgresConnector;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -45,6 +46,10 @@ class AppServiceProvider extends ServiceProvider
             DB::listen(function (QueryExecuted $query) {
                 Log::debug("query: $query->sql");
             });
+        }
+
+        if (app()->isProduction()) {
+            URL::forceScheme('https');
         }
     }
 }
