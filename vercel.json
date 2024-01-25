@@ -3,7 +3,7 @@
   "outputDirectory": "public/build",
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.6.0"
     }
   },
   "rewrites": [
@@ -26,6 +26,7 @@
     "APP_SERVICES_CACHE": "/tmp/services.php",
     "VIEW_COMPILED_PATH": "/tmp/views",
     "LOG_CHANNEL": "stderr",
-    "CACHE_DRIVER": "array"
+    "CACHE_DRIVER": "array",
+    "SESSION_DRIVER": "database"
   }
 }
