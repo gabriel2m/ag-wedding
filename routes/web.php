@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/info', function () {
+    phpinfo();
+});
+
 Route::get('/', function () {
     return to_route('admin.home');
 })->name('home');
