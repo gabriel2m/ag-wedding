@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/info', function () {
     phpinfo();
-});
-
-Route::get('/db', function () {
-    dump(
-        DB::table('users')->get()
-    );
 });
 
 Route::get('/', function () {
