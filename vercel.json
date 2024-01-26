@@ -26,6 +26,8 @@
     "APP_SERVICES_CACHE": "/tmp/services.php",
     "VIEW_COMPILED_PATH": "/tmp/views",
     "LOG_CHANNEL": "stderr",
-    "CACHE_DRIVER": "array"
+    "CACHE_DRIVER": "array",
+    "ASSET_URL": "/static",
+    "SESSION_DRIVER": "database"
   }
 }
