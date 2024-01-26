@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         $password = Str::password(8);
-        User::factory()->create([
+        User::create([
             'name' => 'admin',
             'email' => User::DEFAULT_ADMIN_EMAIL,
             'password' => $password,
