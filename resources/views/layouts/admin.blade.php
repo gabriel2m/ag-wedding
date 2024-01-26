@@ -33,7 +33,7 @@
             :class="navOpen ? 'w-60' : 'w-0 sm:w-12'" @click.outside="if(sm) { navOpen = false }" x-show="started">
             <div class="h-36">
                 <a href="{{ route('admin.home') }}" class="mx-auto h-fit hover:text-emerald-900">
-                    <x-icon-logo class="w-full transition-all duration-200" ::class="navOpen && 'px-16'" />
+                    <x-icon-logo class="w-full transition-all duration-300" ::class="navOpen && 'px-16'" />
                 </a>
             </div>
 
