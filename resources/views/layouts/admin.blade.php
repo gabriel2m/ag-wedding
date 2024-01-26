@@ -29,7 +29,7 @@
             </x-form>
         </header>
 
-        <aside class="fixed z-40 h-screen bg-emerald-950 py-5 text-gray-50 transition-all duration-300 sm:px-2"
+        <aside class="fixed z-40 h-screen bg-emerald-950 py-5 text-gray-100 transition-all duration-300 sm:px-2"
             :class="navOpen ? 'w-60' : 'w-0 sm:w-12'" @click.outside="if(sm) { navOpen = false }" x-show="started">
             <div class="h-36">
                 <a href="{{ route('admin.home') }}" class="mx-auto h-fit hover:text-emerald-900">
@@ -45,7 +45,8 @@
 
                     <a href="{{ route(...$link['route']) }}" @class([
                         'flex items-center transition-all duration-300 hover:ml-1.5 hover:opacity-20',
-                        'underline underline-offset-4' => request()->routeIs($link['route'][0]),
+                        'underline underline-offset-4' => request()->routeIs(
+                            "{$link['route'][0]}*"),
                     ]) :class="navOpen && 'origin-left'">
                         <div>
                             <x-dynamic-component :component="'heroicon-o-' . $link['icon']" class="h-5 transition-all duration-300"
