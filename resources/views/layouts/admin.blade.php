@@ -33,17 +33,27 @@
             :class="navOpen ? 'w-60' : 'w-0 sm:w-12'" @click.outside="if(sm) { navOpen = false }" x-show="started">
             <div class="h-36">
                 <a href="{{ route('admin.home') }}" class="mx-auto h-fit hover:text-emerald-900">
-                    <x-icon-logo class="w-full transition-all duration-200" ::class="navOpen && 'px-16'" />
+                    <x-icon-logo class="w-full transition-all duration-300" ::class="navOpen && 'px-16'" />
                 </a>
             </div>
 
             <nav class="space-y-5 transition-all duration-300" :class="navOpen && 'ml-8'">
-                @foreach ([] as $item)
-                    <a href="{{ route(...Arr::wrap($item['route'])) }}"
+                @php
+                    $links = [
+                        [
+                            'route' => 'admin.home',
+                            'label' => 'Users',
+                            'icon' => 'user-group',
+                        ],
+                    ];
+                @endphp
+
+                @foreach ($links as $link)
+                    <a href="{{ route(...Arr::wrap($link['route'])) }}"
                         class="flex items-center transition-all duration-300 hover:ml-1.5 hover:opacity-20"
                         :class="navOpen && 'origin-left'">
                         <div>
-                            <x-dynamic-component :component="'heroicon-o-' . $item['icon']" class="h-5 transition-all duration-300"
+                            <x-dynamic-component :component="'heroicon-o-' . $link['icon']" class="h-5 transition-all duration-300"
                                 x-bind:class="navOpen || '-translate-x-32 sm:translate-x-1'" />
                         </div>
 
