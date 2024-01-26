@@ -1,8 +1,8 @@
 services:
     laravel.test:
         build:
-            context: ./docker/8.2
-            dockerfile: Dockerfile
+            context: ./docker/app/
+            dockerfile: ./8.2/Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.2/app
@@ -19,7 +19,7 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
-            - './docker/8.2/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
+            - './docker/app/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
         networks:
             - sail
         depends_on:
