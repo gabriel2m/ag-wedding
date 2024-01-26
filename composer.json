@@ -59,9 +59,6 @@
         "format": [
             "npx prettier --write resources/",
             "@php ./vendor/bin/pint"
-        ],
-        "vercel": [
-            "@php artisan migrate --force"
         ]
     },
     "extra": {
