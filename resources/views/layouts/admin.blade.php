@@ -15,7 +15,8 @@
             <x-icon-logo class="m-auto h-10" />
         </div>
 
-        <header class="fixed z-30 flex h-16 w-full items-center bg-white py-2 pr-7 transition-all duration-300"
+        <header
+            class="fixed z-30 flex h-16 w-full items-center bg-white py-2 pr-7 transition-all duration-300 border-b border-gray-300"
             :class="navOpen ? 'pl-[16.75rem]' : 'pl-7 md:pl-[4.75rem]'">
             <button class="group w-11 touch-none" title="Menu" @click="navOpen = ! navOpen" @click.stop>
                 <x-heroicon-o-bars-3 class="h-7 transition group-hover:text-gray-400" ::class="navOpen ? 'scale-x-150 translate-x-2 group-hover:scale-x-100 group-hover:translate-x-0' :
@@ -60,8 +61,18 @@
             </nav>
         </aside>
 
-        <main class="pl-7 pr-7 pt-20 transition-all duration-300" :class="navOpen ? 'md:pl-[16.75rem]' : 'md:pl-[4.75rem]'">
-            @yield('content')
+        <main class="px-7 pb-10 pt-28 transition-all duration-300 text-blue-950"
+            :class="navOpen ? 'md:pl-[16.75rem]' : 'md:pl-[4.75rem]'">
+            @hasSection('content')
+                <div class="mx-auto max-w-7xl space-y-2">
+                    <h3 class="font-medium tracking-tight">
+                        @yield('title', last($title ?? []))
+                    </h3>
+                    <div class="rounded-lg border border-slate-950/20 bg-white p-6 h-[100rem]">
+                        @yield('content')
+                    </div>
+                </div>
+            @endif
         </main>
     </div>
 @overwrite
