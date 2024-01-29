@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Testing\TestResponse;
 
 /*
@@ -54,7 +55,7 @@ function something()
 }
 
 TestResponse::macro('assertSeeTitle', function (array|string $sections) {
-    return $this->assertSee(sprintf('<title>%s</title>', title($sections)), false);
+    return $this->assertSee(sprintf('<title>%s</title>', title(Arr::wrap($sections))), false);
 });
 
 TestResponse::macro('assertSeeLink', function (string|array $url) {
