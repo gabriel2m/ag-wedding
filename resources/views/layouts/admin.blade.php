@@ -41,20 +41,18 @@
                 @foreach ([] as $link)
                     @php
                         $link['route'] = Arr::wrap($link['route']);
+                        $link['active'] = request()->routeIs("{$link['route'][0]}*");
                     @endphp
 
-                    <a href="{{ route(...$link['route']) }}" @class([
-                        'flex items-center transition-all duration-300 hover:ml-1.5 hover:opacity-20',
-                        'underline underline-offset-4' => request()->routeIs(
-                            "{$link['route'][0]}*"),
-                    ]) :class="navOpen && 'origin-left'">
-                        <div>
-                            <x-dynamic-component :component="'heroicon-o-' . $link['icon']" class="h-5 transition-all duration-300"
-                                x-bind:class="navOpen || '-translate-x-32 sm:translate-x-1'" />
+                    <a href="{{ route(...$link['route']) }}"
+                        class="flex h-6 items-center transition-all duration-300 hover:ml-1.5 hover:opacity-20"
+                        x-data="{ active: @js($link['active']) }">
+                        <div class="transition-all duration-300" :class="navOpen || '-translate-x-32 sm:translate-x-1'">
+                            <x-dynamic-component :component="'heroicon-o-' . $link['icon']" class="my-1 h-5" />
+                            <hr x-show="active && !navOpen" x-transition x-transition.duration.300ms />
                         </div>
 
-                        <span class="ml-3 text-nowrap transition-all duration-300"
-                            :class="navOpen || '-translate-x-32 opacity-0'">
+                        <span @class(['ml-3 text-nowrap', 'border-b' => $link['active']]) x-show="navOpen" x-transition x-transition.duration.300ms>
                             @lang($link['label'])
                         </span>
                     </a>
