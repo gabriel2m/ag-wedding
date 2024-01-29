@@ -22,7 +22,7 @@
                     'group-hover:scale-x-150 group-hover:translate-x-2'" />
             </button>
 
-            <x-form action="{{ route('logout') }}" method="POST" class="ml-auto">
+            <x-form method="POST" action="{{ route('logout') }}" class="ml-auto">
                 <button type="submit" class="group flex items-center hover:text-gray-400" title="@lang('Sign out')">
                     | <x-heroicon-o-arrow-right class="h-5 transition group-hover:translate-x-1" />
                 </button>
