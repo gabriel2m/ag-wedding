@@ -57,11 +57,15 @@ TestResponse::macro('assertSeeTitle', function (array|string $sections) {
     return $this->assertSee(sprintf('<title>%s</title>', title($sections)), false);
 });
 
-TestResponse::macro('assertSeeLink', function (string $url) {
+TestResponse::macro('assertSeeLink', function (string|array $url) {
+    $url = is_array($url) ? route(...$url) : $url;
+
     return $this->assertSee("href=\"$url\"", false);
 });
 
-TestResponse::macro('assertSeeForm', function (string $action, string $method = 'POST') {
+TestResponse::macro('assertSeeForm', function (string|array $action, string $method = 'POST') {
+    $action = is_array($action) ? route(...$action) : $action;
+
     return $this->assertSee("method=\"$method\" action=\"$action\"", false);
 });
 

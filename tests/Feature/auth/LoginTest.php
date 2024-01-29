@@ -9,19 +9,19 @@ use function Pest\Laravel\assertGuest;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses()->group('login');
+uses()->group('auth', 'auth.login');
 
-it('successfully renders login', function () {
+it('successfully renders auth.login', function () {
     get(route('login'))
         ->assertSuccessful()
         ->assertViewIs('auth.login')
         ->assertSeeTitle('Login')
-        ->assertSeeForm(route('login'))
+        ->assertSeeForm(['login'])
         ->assertSeeInput('_token')
         ->assertSeeInput('email')
         ->assertSeeInput('password')
         ->assertSeeInput('remember')
-        ->assertSeeLink(route('password.request'));
+        ->assertSeeLink(['password.request']);
 });
 
 it('cant access when authenticated', function () {
@@ -45,7 +45,7 @@ it('requires a valid email', function () {
     assertGuest();
 });
 
-it('successfully renders login after wrong email', function () {
+it('successfully renders auth.login after wrong email', function () {
     $data = [
         'email' => fake()->email(),
         'password' => fake()->password(),
@@ -77,7 +77,7 @@ it('requires a valid password', function () {
     assertGuest();
 });
 
-it('successfully renders login after wrong password', function () {
+it('successfully renders auth.login after wrong password', function () {
     $data = [
         'email' => fake()->email(),
         'password' => fake()->password(),

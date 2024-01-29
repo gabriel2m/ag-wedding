@@ -11,19 +11,19 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses()->group('forgot-password')->beforeEach(function () {
+uses()->group('auth', 'auth.forgot-password')->beforeEach(function () {
     Notification::fake();
 });
 
-it('successfully renders forgot-password', function () {
+it('successfully renders auth.forgot-password', function () {
     get(route('password.request'))
         ->assertSuccessful()
         ->assertViewIs('auth.forgot-password')
         ->assertSeeTitle('Forgot my password')
-        ->assertSeeForm(route('password.email'))
+        ->assertSeeForm(['password.email'])
         ->assertSeeInput('_token')
         ->assertSeeInput('email')
-        ->assertSeeLink(route('login'));
+        ->assertSeeLink(['login']);
 });
 
 it('cant access when authenticated', function () {
@@ -46,7 +46,7 @@ it('requires a valid email', function (string $email) {
     'not registered' => fake()->email(),
 ]);
 
-it('successfully renders forgot-password after invalid email', function () {
+it('successfully renders auth.forgot-password after invalid email', function () {
     test()
         ->fromRoute('password.request')
         ->followingRedirects()
@@ -80,7 +80,7 @@ it('sends reset password link', function () {
     });
 });
 
-it('successfully renders forgot-password after send link', function () {
+it('successfully renders auth.forgot-password after send link', function () {
     $user = User::factory()->create();
 
     test()

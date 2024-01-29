@@ -3,27 +3,17 @@
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Passwords\PasswordBroker;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertCredentials;
+use function Pest\Laravel\assertInvalidCredentials;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses()->group('reset-password');
+uses()->group('auth', 'auth.reset-password');
 
-function userPasswordHash(User $user): string
-{
-    return DB::table($user->getTable())->where('email', $user->email)->value('password');
-}
-
-function passwordDidNotChange(User $user): void
-{
-    expect(userPasswordHash($user))->toBe($user->password);
-}
-
-it('successfully renders reset-password', function () {
+it('successfully renders auth.reset-password', function () {
     $token = Password::createToken($user = User::factory()->create());
 
     get(route('password.reset', [
@@ -33,7 +23,7 @@ it('successfully renders reset-password', function () {
         ->assertSuccessful()
         ->assertViewIs('auth.reset-password')
         ->assertSeeTitle('Reset password')
-        ->assertSeeForm(route('password.update'))
+        ->assertSeeForm(['password.update'])
         ->assertSeeInput('_token')
         ->assertSeeInput('token', $token)
         ->assertSeeInput('email', $user->email)
@@ -62,7 +52,7 @@ it('requires a valid email', function (string $email) {
     'not registered' => fake()->email(),
 ]);
 
-it('successfully renders reset-password after invalid email', function () {
+it('successfully renders auth.reset-password after invalid email', function () {
     $token = Password::createToken($user = User::factory()->create());
 
     test()
@@ -85,21 +75,31 @@ it('successfully renders reset-password after invalid email', function () {
 });
 
 it('requires a valid token', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'password' => $old_password = fake()->password(),
+    ]);
 
     post(route('password.update'), [
         'email' => $user->email,
         'token' => fake()->password(),
-        'password' => $password = fake()->password(),
-        'password_confirmation' => $password,
+        'password' => $new_password = fake()->password(),
+        'password_confirmation' => $new_password,
     ])
         ->assertRedirect()
         ->assertSessionHasErrors('email');
 
-    passwordDidNotChange($user);
+    assertCredentials([
+        'email' => $user->email,
+        'password' => $old_password,
+    ]);
+
+    assertInvalidCredentials([
+        'email' => $user->email,
+        'password' => $new_password,
+    ]);
 });
 
-it('successfully renders reset-password after invalid token', function () {
+it('successfully renders auth.reset-password after invalid token', function () {
     $token = Password::createToken($user = User::factory()->create());
 
     test()
@@ -121,40 +121,64 @@ it('successfully renders reset-password after invalid token', function () {
         ->assertDontSee($password);
 });
 
-it('requires a valid password', function (string $password) {
-    $token = Password::createToken($user = User::factory()->create());
+it('requires a valid password', function (string $new_password) {
+    $token = Password::createToken(
+        $user = User::factory()->create([
+            'password' => $old_password = fake()->password(),
+        ])
+    );
 
     post(route('password.update'), [
         'email' => $user->email,
         'token' => $token,
-        'password' => $password,
-        'password_confirmation' => $password,
+        'password' => $new_password,
+        'password_confirmation' => $new_password,
     ])
         ->assertRedirect()
         ->assertSessionHasErrors('password');
 
-    passwordDidNotChange($user);
+    assertCredentials([
+        'email' => $user->email,
+        'password' => $old_password,
+    ]);
+
+    assertInvalidCredentials([
+        'email' => $user->email,
+        'password' => $new_password,
+    ]);
 })->with([
     'empty' => '',
     'short' => '1234',
 ]);
 
 it('requires a valid password_confirmation', function () {
-    $token = Password::createToken($user = User::factory()->create());
+    $token = Password::createToken(
+        $user = User::factory()->create([
+            'password' => $old_password = fake()->password(),
+        ])
+    );
 
     post(route('password.update'), [
         'email' => $user->email,
         'token' => $token,
-        'password' => fake()->password(),
+        'password' => $new_password = fake()->password(),
         'password_confirmation' => fake()->password(),
     ])
         ->assertRedirect()
         ->assertSessionHasErrors('password');
 
-    passwordDidNotChange($user);
+    assertCredentials([
+        'email' => $user->email,
+        'password' => $old_password,
+    ]);
+
+    assertInvalidCredentials([
+        'email' => $user->email,
+        'password' => $new_password,
+    ]);
 });
 
-it('successfully renders reset-password after invalid password', function () {
+it('successfully renders auth.reset-password after invalid password', function () {
     $token = Password::createToken($user = User::factory()->create());
 
     test()
@@ -176,21 +200,33 @@ it('successfully renders reset-password after invalid password', function () {
 });
 
 it('successfully reset password', function () {
-    $token = Password::createToken($user = User::factory()->create());
+    $token = Password::createToken(
+        $user = User::factory()->create([
+            'password' => $old_password = fake()->password(),
+        ])
+    );
 
     post(route('password.update'), [
         'email' => $user->email,
         'token' => $token,
-        'password' => $password = fake()->password(),
-        'password_confirmation' => $password,
+        'password' => $new_password = fake()->password(),
+        'password_confirmation' => $new_password,
     ])
         ->assertRedirect()
         ->assertSessionHasNoErrors();
 
-    expect(Hash::check($password, userPasswordHash($user)))->toBeTrue();
+    assertCredentials([
+        'email' => $user->email,
+        'password' => $new_password,
+    ]);
+
+    assertInvalidCredentials([
+        'email' => $user->email,
+        'password' => $old_password,
+    ]);
 });
 
-it('successfully renders login after reset password', function () {
+it('successfully renders auth.login after reset password', function () {
     $token = Password::createToken($user = User::factory()->create());
 
     test()
