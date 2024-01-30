@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Permission;
@@ -13,6 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Artisan::call('app:permissions:create');
+        User::firstWhere(['email' => User::DEFAULT_ADMIN_EMAIL])->givePermissionTo('admin.*');
     }
 
     /**
