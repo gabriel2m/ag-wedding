@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'editor' => env('DEBUGBAR_EDITOR', 'vscode'),
+    'editor' => env('DEBUGBAR_EDITOR', env('IGNITION_EDITOR', '')),
 
     /*
     |--------------------------------------------------------------------------
@@ -85,8 +85,8 @@ return [
     |
     */
 
-    'remote_sites_path' => env('DEBUGBAR_REMOTE_SITES_PATH', '/var/www/html'),
-    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', ''),
+    'remote_sites_path' => env('DEBUGBAR_REMOTE_SITES_PATH', env('IGNITION_REMOTE_SITES_PATH', '')),
+    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH', '')),
 
     /*
      |--------------------------------------------------------------------------
@@ -168,12 +168,12 @@ return [
         'symfony_request' => true,  // Only one can be enabled..
         'mail' => true,  // Catch mail messages
         'laravel' => true, // Laravel version and environment
-        'events' => false, // All events fired
+        'events' => true, // All events fired
         'default_request' => false, // Regular or special Symfony request logger
-        'logs' => false, // Add the latest log messages
+        'logs' => true, // Add the latest log messages
         'files' => false, // Show the included files
         'config' => true, // Display config settings
-        'cache' => false, // Display cache events
+        'cache' => true, // Display cache events
         'models' => true,  // Display models
         'livewire' => true,  // Display Livewire (when available)
     ],
