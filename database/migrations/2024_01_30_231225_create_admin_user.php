@@ -18,7 +18,7 @@ return new class extends Migration
             'name' => 'admin',
             'email' => User::DEFAULT_ADMIN_EMAIL,
             'password' => $password,
-        ]);
+        ])->givePermissionTo('admin.*');
         outro('Email: '.User::DEFAULT_ADMIN_EMAIL);
         outro(trans('Password').": $password");
     }
