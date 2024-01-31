@@ -9,12 +9,24 @@
 
     <x-auth.form action="{{ route('password.email') }}">
         <div>
-            <x-auth.label for="email" text="Email" />
-            <x-auth.text-input name="email" type="email" autocomplete="email" required />
+            <x-auth.label
+                for="email"
+                text="Email"
+            />
+            <x-auth.text-input
+                autocomplete="email"
+                name="email"
+                required
+                type="email"
+            />
             <x-error name="email" />
 
             <div class="mt-2 flex">
-                <x-auth.text-link href="{{ route('login') }}" class="ml-auto" text="Remembered your password?" />
+                <x-auth.text-link
+                    class="ml-auto"
+                    href="{{ route('login') }}"
+                    text="Remembered your password?"
+                />
             </div>
         </div>
 

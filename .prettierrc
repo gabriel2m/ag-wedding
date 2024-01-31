@@ -13,5 +13,8 @@
             }
         }
     ],
-    "sortTailwindcssClasses": true
+    "sortTailwindcssClasses": true,
+    "sortHtmlAttributes": "alphabetical",
+    "wrapAttributes": "force-expand-multiline",
+    "printWidth": 180
 }
