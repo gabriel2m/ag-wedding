@@ -16,7 +16,7 @@
         type="image/png"
     >
 
-    <title>{{ title($title ?? []) }}</title>
+    <x-title :title="$title ?? null" />
 
     <link
         href="https://rsms.me/inter/inter.css"

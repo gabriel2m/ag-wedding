@@ -26,7 +26,7 @@ it('successfully renders admin.home', function () {
     )
         ->get(route('admin.home'))
         ->assertSuccessful()
-        ->assertViewIs('admin.home')
+        ->assertViewIs('layouts.admin')
         ->assertSeeTitle([])
         ->assertSeeForm(['logout'])
         ->assertSeeInput('_token')

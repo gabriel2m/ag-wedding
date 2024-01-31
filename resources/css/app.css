@@ -27,3 +27,15 @@
         @apply text-xl;
     }
 }
+
+.load {
+    @apply hidden;
+}
+
+.htmx-request .load {
+    @apply flex;
+}
+
+.htmx-request #content {
+    @apply hidden;
+}

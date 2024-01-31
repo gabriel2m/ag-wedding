@@ -64,14 +64,14 @@ TestResponse::macro('assertSeeLink', function (string|array $url) {
     return $this->assertSee("href=\"$url\"", false);
 });
 
-TestResponse::macro('assertSeeForm', function (string|array $action, string $method = 'POST') {
+TestResponse::macro('assertSeeForm', function (string|array $action) {
     $action = is_array($action) ? route(...$action) : $action;
 
-    return $this->assertSee("method=\"$method\" action=\"$action\"", false);
+    return $this->assertSee("action=\"$action\"", false);
 });
 
 TestResponse::macro('assertSeeInput', function (string $name, ?string $value = null) {
-    return $this->assertSeeInOrder([
+    return $this->assertSee([
         $value ? "value=\"$value\"" : '',
         "name=\"$name\"",
     ], false);

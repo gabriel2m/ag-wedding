@@ -1,4 +1,2 @@
-@extends('layouts.admin')
-
-@section('content')
-@endsection
+<x-admin.content>
+</x-admin.content>

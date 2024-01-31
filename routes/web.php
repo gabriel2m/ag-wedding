@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,11 @@ Route::get('/', function () {
     return to_route('admin.home');
 })->name('home');
 
-Route::middleware(['auth', RoutePermission::class])->prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware([
+    'auth',
+    RoutePermission::class,
+    IsHtmx::layout('layouts.admin'),
+])->group(function () {
     Route::name('home')->get('/', function () {
         return view('admin.home');
     });

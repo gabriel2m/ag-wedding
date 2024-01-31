@@ -1,59 +1,141 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="min-h-full bg-gray-200" x-data="{
-        started: false,
-        navOpen: false,
-        md: window.innerWidth < 769,
-        init() {
-            this.navOpen = !!Number(localStorage.getItem('navOpen') ?? !this.md);
-        }
-    }" x-init="$nextTick(() => { started = true })"
-        x-effect="if(!md) { localStorage.setItem('navOpen', Number(navOpen)) }">
-        <div class="fixed z-50 flex h-full w-full bg-white" x-show="! started"
-            x-transition:leave="transition ease-in duration-500" x-transition:leave-end="opacity-0">
+    <div
+        class="flex min-h-full bg-gray-200"
+        x-data="{
+            started: false,
+            navOpen: false,
+            md: window.innerWidth < 769,
+            init() {
+                this.navOpen = !!Number(localStorage.getItem('navOpen') ?? !this.md);
+            }
+        }"
+        x-effect="if(!md) { localStorage.setItem('navOpen', Number(navOpen)) }"
+        x-init="$nextTick(() => { started = true })"
+    >
+        <div
+            class="fixed z-50 flex h-full w-full bg-white"
+            x-show="! started"
+            x-transition:leave-end="opacity-0"
+            x-transition:leave="transition ease-in duration-500"
+        >
             <x-icon-logo class="m-auto h-10" />
         </div>
 
         <header
-            class="fixed z-30 flex h-16 w-full items-center bg-white py-2 pr-7 transition-all duration-300 border-b border-gray-300"
-            :class="navOpen ? 'pl-[16.75rem]' : 'pl-7 md:pl-[4.75rem]'">
-            <button class="group w-11 touch-none" title="Menu" @click="navOpen = ! navOpen" @click.stop>
-                <x-heroicon-o-bars-3 class="h-7 transition group-hover:text-gray-400" ::class="navOpen ? 'scale-x-150 translate-x-2 group-hover:scale-x-100 group-hover:translate-x-0' :
-                    'group-hover:scale-x-150 group-hover:translate-x-2'" />
+            :class="navOpen ? 'pl-[16.75rem]' : 'md:pl-[4.75rem]'"
+            class="fixed z-30 flex h-16 w-full items-center border-b border-gray-300 bg-white px-7 py-2 transition-all duration-300"
+        >
+            <button
+                class="group w-11"
+                title="Menu"
+                x-on:click.stop
+                x-on:click="navOpen = ! navOpen"
+            >
+                <x-heroicon-o-bars-3
+                    ::class="navOpen ? 'scale-x-150 translate-x-2 group-hover:scale-x-100 group-hover:translate-x-0' : 'group-hover:scale-x-150 group-hover:translate-x-2'"
+                    class="h-7 transition group-hover:text-gray-400"
+                />
             </button>
 
-            <x-form method="POST" action="{{ route('logout') }}" class="ml-auto">
-                <button type="submit" class="group flex items-center hover:text-gray-400" title="@lang('Sign out')">
+            <x-form
+                action="{{ route('logout') }}"
+                class="ml-auto"
+                method="POST"
+            >
+                <button
+                    class="group flex items-center hover:text-gray-400"
+                    title="@lang('Sign out')"
+                    type="submit"
+                >
                     | <x-heroicon-o-arrow-right class="h-5 transition group-hover:translate-x-1" />
                 </button>
             </x-form>
         </header>
 
-        <aside class="fixed z-40 h-screen bg-emerald-950 py-5 text-gray-100 transition-all duration-300 md:px-2"
-            :class="navOpen ? 'w-60' : 'w-0 md:w-12'" @click.outside="if(md) { navOpen = false }" x-show="started">
+        <aside
+            :class="navOpen ? 'w-60' : 'w-0 md:w-12'"
+            class="fixed z-40 h-screen bg-emerald-950 py-5 transition-all duration-300 md:px-2"
+            x-data="{ active: '' }"
+            x-on:click.outside="if(md) { navOpen = false }"
+            x-show="started"
+        >
             <div class="h-36">
-                <a href="{{ route('admin.home') }}" class="mx-auto hover:text-emerald-900">
-                    <x-icon-logo class="w-full transition-all duration-300" ::class="navOpen && 'px-16'" />
+                <a
+                    class="mx-auto text-gray-100 hover:text-emerald-900"
+                    href="{{ route('admin.home') }}"
+                    hx-boost="true"
+                    hx-disabled-elt="this"
+                    hx-indicator="main"
+                    hx-push-url="true"
+                    hx-swap="outerHTML"
+                    hx-target="#content"
+                    x-on:click="if(md) { navOpen = false }"
+                    x-on:htmx:after-request="active = ''"
+                >
+                    <x-icon-logo
+                        ::class="navOpen && 'px-16'"
+                        class="w-full transition-all duration-300"
+                    />
                 </a>
             </div>
 
-            <nav class="space-y-5 transition-all duration-300" :class="navOpen && 'ml-8'">
-                @foreach ([] as $link)
-                    @php
-                        $link['route'] = Arr::wrap($link['route']);
-                        $link['active'] = request()->routeIs("{$link['route'][0]}*");
-                    @endphp
+            @php
+                $links = [];
 
-                    <a href="{{ route(...$link['route']) }}"
-                        class="flex h-6 items-center transition-all duration-300 hover:ml-1.5 hover:opacity-20"
-                        x-data="{ active: @js($link['active']) }">
-                        <div class="transition-all duration-300" :class="navOpen || '-translate-x-32 md:translate-x-1'">
-                            <x-dynamic-component :component="'heroicon-o-' . $link['icon']" class="my-1 h-5" />
-                            <hr x-show="active && !navOpen" x-transition x-transition.duration.300ms />
+                foreach ($links as $link) {
+                    if (request()->routeIs("{$link['route'][0]}*")) {
+                        $active = $link['route'][0];
+                    }
+                }
+            @endphp
+
+            <nav
+                :class="navOpen && 'ml-8'"
+                class="space-y-5 transition-all duration-300"
+                x-init="active = @js($active ?? '')"
+            >
+                @foreach ($links as $link)
+                    <a
+                        class="flex h-6 items-center text-gray-200 transition-all duration-300 hover:ml-1.5 hover:opacity-20"
+                        href="{{ route(...$link['route']) }}"
+                        hx-boost="true"
+                        hx-disabled-elt="this"
+                        hx-indicator="main"
+                        hx-push-url="true"
+                        hx-swap="outerHTML"
+                        hx-target="#content"
+                        x-data="{
+                            id: @js($link['route'][0]),
+                            isActive: false
+                        }"
+                        x-effect="isActive = active == id"
+                        x-on:click="if(md) { navOpen = false }"
+                        x-on:htmx:after-request="active = id"
+                    >
+                        <div
+                            :class="navOpen || '-translate-x-32 md:translate-x-1'"
+                            class="transition-all duration-300"
+                        >
+                            <x-dynamic-component
+                                :component="'heroicon-o-' . $link['icon']"
+                                class="my-1 h-5"
+                            />
+                            <hr
+                                x-show="isActive && !navOpen"
+                                x-transition
+                                x-transition.duration.300ms
+                            />
                         </div>
 
-                        <span @class(['ml-3 text-nowrap', 'border-b' => $link['active']]) x-show="navOpen" x-transition x-transition.duration.300ms>
+                        <span
+                            :class="isActive && 'border-b'"
+                            class="ml-3 text-nowrap"
+                            x-show="navOpen"
+                            x-transition
+                            x-transition.duration.300ms
+                        >
                             @lang($link['label'])
                         </span>
                     </a>
@@ -61,18 +143,25 @@
             </nav>
         </aside>
 
-        <main class="px-7 pb-10 pt-28 transition-all duration-300 text-blue-950"
-            :class="navOpen ? 'md:pl-[16.75rem]' : 'md:pl-[4.75rem]'">
-            @hasSection('content')
-                <div class="mx-auto max-w-7xl space-y-2">
-                    <h3 class="font-medium tracking-tight">
-                        @yield('title', last($title ?? []))
-                    </h3>
-                    <div class="rounded-lg border border-slate-950/20 bg-white p-6 h-[100rem]">
-                        @yield('content')
-                    </div>
-                </div>
-            @endif
+        <div
+            :class="navOpen ? 'md:w-60' : 'md:w-12'"
+            class="mr-7 w-0 transition-all duration-300"
+        >
+        </div>
+
+        <main class="mx-auto max-w-7xl grow space-y-2 pb-10 pr-7 pt-28 text-blue-950 transition-all duration-300">
+            <div
+                hx-get="{{ url()->current() }}"
+                hx-indicator="main"
+                hx-swap="outerHTML"
+                hx-trigger="load"
+                id="content"
+            >
+            </div>
+
+            <div class="load h-2/3">
+                <x-icon-spinner class="m-auto animate-spin fill-current text-slate-500/90" />
+            </div>
         </main>
     </div>
 @overwrite
