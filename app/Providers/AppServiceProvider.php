@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\IsHtmx;
+use App\Http\Middleware\RoutePermission;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Connectors\PostgresConnector;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
@@ -51,5 +54,9 @@ class AppServiceProvider extends ServiceProvider
         if (app()->isProduction()) {
             URL::forceScheme('https');
         }
+
+        app(Kernel::class)
+            ->appendToMiddlewarePriority(RoutePermission::class)
+            ->appendToMiddlewarePriority(IsHtmx::class);
     }
 }
