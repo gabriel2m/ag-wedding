@@ -32,5 +32,9 @@
   "Regards": "Atenciosamente",
   "Confirmation": "Confirmação",
   "Send": "Enviar",
-  "Reset": "Redefinir"
+  "Reset": "Redefinir",
+  "go back": "voltar",
+  "User does not have the right permissions.": "Você não possui permissão de acesso",
+  "This action is unauthorized.": "Ação não autorizada",
+  "Forbidden": "Acesso negado"
 }
