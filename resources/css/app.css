@@ -28,11 +28,11 @@
     }
 }
 
-.load {
+.loading {
     @apply hidden;
 }
 
-.htmx-request .load {
+.htmx-request .loading {
     @apply flex;
 }
 

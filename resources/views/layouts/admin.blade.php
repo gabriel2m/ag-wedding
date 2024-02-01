@@ -159,7 +159,7 @@
             >
             </div>
 
-            <div class="load h-2/3">
+            <div class="loading h-2/3">
                 <x-icon-spinner class="m-auto animate-spin fill-current text-slate-500/90" />
             </div>
         </main>
