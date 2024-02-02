@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,6 @@ Route::prefix('admin')->name('admin.')->middleware([
     Route::name('home')->get('/', function () {
         return view('admin.home');
     });
+
+    Route::resource('users', UserController::class);
 });
