@@ -11,6 +11,16 @@ htmx.on("htmx:beforeSwap", (evt) => {
 });
 
 /**
+ * Remember filter value on go back
+ */
+htmx.on("htmx:afterSwap", () => {
+    document.querySelectorAll("[name^='filter']").forEach((el) => {
+        const params = new URLSearchParams(window.location.search);
+        el.setAttribute("value", params.get(el.getAttribute("name")) ?? "");
+    });
+});
+
+/**
  * colspan="all"
  */
 htmx.on("htmx:afterSwap", () => {
