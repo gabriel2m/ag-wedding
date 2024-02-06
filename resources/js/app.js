@@ -24,3 +24,19 @@ htmx.on("htmx:afterSwap", () => {
         el.setAttribute("colspan", cols);
     });
 });
+
+/**
+ * hx-headers-merge
+ */
+htmx.on("htmx:afterSwap", () => {
+    document.querySelectorAll("[hx-headers-merge]").forEach((el) => {
+        el.setAttribute(
+            "hx-headers",
+            JSON.stringify({
+                ...JSON.parse(el.closest("[hx-headers]").getAttribute("hx-headers")),
+                ...JSON.parse(el.getAttribute("hx-headers-merge")),
+            }),
+        );
+        el.removeAttribute("hx-headers-merge");
+    });
+});
