@@ -1,1 +1,3 @@
-<x-h3 :attributes="$attributes" />
+<h3 {{ $attributes }}>
+    @lang($text)
+</h3>

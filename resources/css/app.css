@@ -36,6 +36,10 @@
     @apply flex;
 }
 
-.htmx-request #content {
+.htmx-request .content {
     @apply hidden;
+}
+
+.htmx-added {
+    @apply opacity-0;
 }

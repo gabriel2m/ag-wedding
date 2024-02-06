@@ -68,7 +68,6 @@
                     hx-boost="true"
                     hx-disabled-elt="this"
                     hx-indicator="main"
-                    hx-push-url="true"
                     hx-swap="outerHTML"
                     hx-target="#content"
                     x-on:click="if(md) { navOpen = false }"
@@ -103,8 +102,7 @@
                         hx-boost="true"
                         hx-disabled-elt="this"
                         hx-indicator="main"
-                        hx-push-url="true"
-                        hx-swap="outerHTML"
+                        hx-swap="outerHTML show:no-scroll"
                         hx-target="#content"
                         x-data="{
                             id: @js($link['route'][0]),
@@ -148,7 +146,7 @@
             class="mx-auto max-w-full grow space-y-2 px-7 pb-10 pt-28 text-blue-950 transition-all duration-300 md:max-w-[calc(100%-theme('width.12'))] xl:max-w-screen-xl"
         >
             <div
-                hx-get="{{ url()->current() }}"
+                hx-get="{{ request()->fullUrl() }}"
                 hx-indicator="main"
                 hx-swap="outerHTML"
                 hx-trigger="load"
