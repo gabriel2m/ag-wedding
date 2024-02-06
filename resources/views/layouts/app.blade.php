@@ -29,7 +29,12 @@
 
 <body
     class="h-full text-slate-800"
-    hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
+    hx-headers='{{ json_encode(
+        array_filter([
+            'X-CSRF-TOKEN' => csrf_token(),
+            'X-Requested-With' => app()->isLocal() ? 'XMLHttpRequest' : false,
+        ]),
+    ) }}'
 >
     @yield('content')
 
