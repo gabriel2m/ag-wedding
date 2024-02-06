@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
+use Barryvdh\Debugbar\LaravelDebugbar;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Connectors\PostgresConnector;
 use Illuminate\Database\Events\QueryExecuted;
@@ -35,6 +36,12 @@ class AppServiceProvider extends ServiceProvider
                     return $dsn.';options=endpoint='.Str::before($config['host'], '.');
                 }
             };
+        });
+
+        $this->app->extend(LaravelDebugbar::class, function (LaravelDebugbar $debugbar) {
+            $debugbar->getJavascriptRenderer()->setEnableJqueryNoConflict(false);
+
+            return $debugbar;
         });
     }
 
