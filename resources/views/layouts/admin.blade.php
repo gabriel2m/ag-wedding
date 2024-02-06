@@ -24,7 +24,7 @@
         </div>
 
         <header
-            :class="navOpen ? 'pl-[16.75rem]' : 'md:pl-[4.75rem]'"
+            :class="navOpen ? 'pl-[15.75rem]' : 'md:pl-[4.75rem]'"
             class="fixed z-30 flex h-16 w-full items-center border-b border-gray-300 bg-white px-7 py-2 transition-all duration-300"
         >
             <button
@@ -55,13 +55,13 @@
         </header>
 
         <aside
-            :class="navOpen ? 'w-60' : 'w-0 md:w-12'"
+            :class="navOpen ? 'w-56' : 'w-0 md:w-12'"
             class="fixed z-40 h-screen bg-emerald-950 py-5 transition-all duration-300 md:px-2"
             x-data="{ active: '' }"
             x-on:click.outside="if(md) { navOpen = false }"
             x-show="started"
         >
-            <div class="h-36">
+            <div class="h-24">
                 <a
                     class="mx-auto text-gray-100 hover:text-emerald-900"
                     href="{{ route('admin.home') }}"
@@ -75,7 +75,7 @@
                     x-on:htmx:after-request="active = ''"
                 >
                     <x-icon-logo
-                        ::class="navOpen && 'px-16'"
+                        ::class="navOpen ? 'h-16' : 'h-7'"
                         class="w-full transition-all duration-300"
                     />
                 </a>
@@ -143,13 +143,10 @@
             </nav>
         </aside>
 
-        <div
-            :class="navOpen ? 'md:w-60' : 'md:w-12'"
-            class="mr-7 w-0 transition-all duration-300"
+        <main
+            :class="navOpen ? 'md:pl-[15.75rem]' : 'md:pl-[4.75rem] 2xl:px-7'"
+            class="mx-auto max-w-full grow space-y-2 px-7 pb-10 pt-28 text-blue-950 transition-all duration-300 md:max-w-[calc(100%-theme('width.12'))] xl:max-w-screen-xl"
         >
-        </div>
-
-        <main class="mx-auto max-w-7xl grow space-y-2 pb-10 pr-7 pt-28 text-blue-950 transition-all duration-300">
             <div
                 hx-get="{{ url()->current() }}"
                 hx-indicator="main"
