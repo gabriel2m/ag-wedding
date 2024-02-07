@@ -19,7 +19,7 @@
             </h3>
         @endif
 
-        <div class="grow rounded-lg border border-slate-950/20 bg-white px-10 py-6">
+        <div class="grow rounded-lg border border-slate-950/20 bg-white px-5 md:px-10 py-3 md:py-6">
             {{ $slot }}
         </div>
     @endif
