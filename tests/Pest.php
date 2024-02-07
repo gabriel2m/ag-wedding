@@ -64,6 +64,18 @@ TestResponse::macro('assertSeeLink', function (string|array $url) {
     return $this->assertSee("href=\"$url\"", false);
 });
 
+TestResponse::macro('assertDontSeeHxLink', function (string|array $url, string $method) {
+    $url = is_array($url) ? route(...$url) : $url;
+
+    return $this->assertDontSee("hx-$method=\"$url\"", false);
+});
+
+TestResponse::macro('assertSeeHxLink', function (string|array $url, string $method) {
+    $url = is_array($url) ? route(...$url) : $url;
+
+    return $this->assertSee("hx-$method=\"$url\"", false);
+});
+
 TestResponse::macro('assertSeeForm', function (string|array $action) {
     $action = is_array($action) ? route(...$action) : $action;
 

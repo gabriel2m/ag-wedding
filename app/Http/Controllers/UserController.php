@@ -5,18 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Facades\App\Models\User as UserFacade;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
     /**
      * Display a listing layout of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view(
+            $request->header('X-HX-Page', false) ? 'admin.users.page' : 'admin.users.index',
+            [
+                'users' => QueryBuilder::for(User::class)
+                    ->allowedFilters(['name', 'email'])
+                    ->defaultSort(['name', 'email'])
+                    ->select('name', 'email')
+                    ->paginate()
+                    ->withQueryString(),
+            ]
+        );
     }
 
     /**

@@ -36,5 +36,11 @@
   "go back": "voltar",
   "User does not have the right permissions.": "Você não possui permissão de acesso",
   "This action is unauthorized.": "Ação não autorizada",
-  "Forbidden": "Acesso negado"
+  "Forbidden": "Acesso negado",
+  "Users": "Usuários",
+  "No users found": "Nenhum usuário encontrado",
+  "Name": "Nome",
+  "Load more": "Carregar mais",
+  "Showing": "Exibindo",
+  "of": "de"
 }
