@@ -58,10 +58,6 @@ class AppServiceProvider extends ServiceProvider
             });
         }
 
-        if (app()->isProduction()) {
-            URL::forceScheme('https');
-        }
-
         app(Kernel::class)
             ->appendToMiddlewarePriority(RoutePermission::class)
             ->appendToMiddlewarePriority(IsHtmx::class);
