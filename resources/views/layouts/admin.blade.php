@@ -81,7 +81,13 @@
             </div>
 
             @php
-                $links = [];
+                $links = [
+                    [
+                        'route' => ['admin.users.index'],
+                        'label' => 'Users',
+                        'icon' => 'user-group',
+                    ],
+                ];
 
                 foreach ($links as $link) {
                     if (request()->routeIs("{$link['route'][0]}*")) {
