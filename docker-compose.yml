@@ -16,6 +16,7 @@ services:
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            DEBUGBAR_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
             - './docker/app/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
