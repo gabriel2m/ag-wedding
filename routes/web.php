@@ -29,5 +29,5 @@ Route::prefix('admin')->name('admin.')->middleware([
         return view('admin.home');
     });
 
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except('show');
 });
