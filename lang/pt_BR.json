@@ -3,7 +3,6 @@
   "Forgot your password?": "Esqueceu sua senha?",
   "Forgot my password": "Esqueci minha senha",
   "If you did not request a password reset, no further action is required.": "Se você não solicitou a redefinição de senha, nenhuma ação adicional será necessária.",
-  "Remember me": "Manter conectado",
   "Password": "Senha",
   "Reset Password": "Redefinir Senha",
   "Reset password": "Redefinir senha",
@@ -30,7 +29,6 @@
   "Please click the button below to verify your email address.": "Clique no botão abaixo para verificar seu endereço de email.",
   "If you did not create an account, no further action is required.": "Se você não criou a conta, favor desconsiderar este email.",
   "Regards": "Atenciosamente",
-  "Confirmation": "Confirmação",
   "Send": "Enviar",
   "Reset": "Redefinir",
   "go back": "voltar",
@@ -38,9 +36,16 @@
   "This action is unauthorized.": "Ação não autorizada",
   "Forbidden": "Acesso negado",
   "Users": "Usuários",
+  "User": "Usuário",
   "No users found": "Nenhum usuário encontrado",
   "Name": "Nome",
   "Load more": "Carregar mais",
   "Showing": "Exibindo",
-  "of": "de"
+  "of": "de",
+  "Add": "Adicionar",
+  "Add user": "Adicionar usuário",
+  "Permissions": "Permissões",
+  "Cancel": "Cancelar",
+  "Save": "Salvar",
+  ":resource saved": ":resource salvo"
 }
