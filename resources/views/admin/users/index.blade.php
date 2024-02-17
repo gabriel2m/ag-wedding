@@ -11,12 +11,10 @@
                 <x-admin.table.header.text-filter
                     class="w-1/2"
                     filter="name"
-                    label="Name"
                 />
                 <x-admin.table.header.text-filter
                     class="w-1/2"
                     filter="email"
-                    label="Email"
                 />
             </x-slot>
             <x-slot:body>

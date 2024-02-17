@@ -1,18 +1,24 @@
-@props(['filter', 'label'])
+@props(['filter', 'label' => null])
+
+@php
+    $name = "filter[$filter]";
+    $label ??= "validation.attributes.$filter";
+@endphp
 
 <x-admin.table.header :attributes="$attributes">
     <div class="flex">
-        <span class="mt-auto">
-            @lang($label)
-        </span>
-        <div class="relative ml-2">
+        <x-label
+            :for="$name"
+            :text="$label"
+        />
+        <div class="relative ml-2 flex items-center border-b">
             <x-text-input
-                :name="sprintf('filter[%s]', $filter)"
+                :name="$name"
                 :value="request()->input('filter.' . $filter)"
-                class="peer border-0 border-b border-slate-400/50 pb-0 pl-1 pr-8 text-slate-700 filter focus:border-slate-400/50 focus:ring-0"
+                class="peer border-0 px-1 py-0 leading-none text-slate-700 filter focus:ring-0"
                 type="text"
             />
-            <x-heroicon-o-magnifying-glass class="duration-400 absolute bottom-1 right-3 h-4 text-slate-400/50 transition peer-focus:text-slate-500" />
+            <x-heroicon-o-magnifying-glass class="duration-400 mr-1 h-4 text-slate-400/50 transition peer-focus:text-slate-500" />
             <div class="absolute bottom-0 block w-full scale-x-0 border-b border-gray-400 transition-transform duration-300 peer-focus:scale-x-100 peer-focus:border-slate-500">
             </div>
         </div>
