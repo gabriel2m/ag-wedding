@@ -14,3 +14,13 @@ if (! function_exists('title')) {
             ->implode(' | ');
     }
 }
+
+if (! function_exists('trans_cap')) {
+    /**
+     * Translate the given message and capitalize the first char.
+     */
+    function trans_cap(?string $key = null, array $replace = [], ?string $locale = null): ?string
+    {
+        return ucfirst(trans(...func_get_args()));
+    }
+}

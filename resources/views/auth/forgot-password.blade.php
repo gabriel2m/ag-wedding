@@ -9,10 +9,7 @@
 
     <x-auth.form action="{{ route('password.email') }}">
         <div>
-            <x-auth.label
-                for="email"
-                text="Email"
-            />
+            <x-auth.label for="email" />
             <x-auth.text-input
                 autocomplete="email"
                 name="email"

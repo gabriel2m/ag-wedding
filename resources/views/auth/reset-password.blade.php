@@ -23,10 +23,7 @@
         <x-error name="email" />
 
         <div>
-            <x-auth.label
-                for="password"
-                text="Password"
-            />
+            <x-auth.label for="password" />
             <x-auth.text-input
                 name="password"
                 required
@@ -36,10 +33,7 @@
         </div>
 
         <div>
-            <x-auth.label
-                for="password_confirmation"
-                text="Confirmation"
-            />
+            <x-auth.label for="password_confirmation" />
             <x-auth.text-input
                 name="password_confirmation"
                 required

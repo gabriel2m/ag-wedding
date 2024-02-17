@@ -1,5 +1,9 @@
-@props(['text'])
+@props(['text' => null])
 
-<label {{ $attributes }}>
-    @lang($text)
+@php
+    $text ??= "validation.attributes.{$attributes['for']}";
+@endphp
+
+<label {{ $attributes->class(['block']) }}>
+    {{ trans_cap($text) }}
 </label>
