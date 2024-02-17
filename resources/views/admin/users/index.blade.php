@@ -3,7 +3,6 @@
         action="{{ route('admin.users.index') }}"
         hx-boost="true"
         hx-headers-merge="{{ '{"X-HX-Page": true}' }}"
-        hx-swap="innerHTML show:no-scroll"
         hx-target="find tbody"
         hx-trigger="input changed delay:400ms from:[name]"
     >
