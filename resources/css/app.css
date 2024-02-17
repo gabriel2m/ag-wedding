@@ -44,6 +44,8 @@
     @apply hidden;
 }
 
-.htmx-added {
+.transition.htmx-added,
+.transition-all.htmx-added,
+.transition-opacity.htmx-added {
     @apply opacity-0;
 }
