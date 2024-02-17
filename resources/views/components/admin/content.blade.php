@@ -1,11 +1,9 @@
 @props([
     'title' => null,
+    'heading' => null,
     'content_title' => null,
     'breadcrumb' => [],
 ])
-@php
-    $content_title ??= $title;
-@endphp
 
 <x-title :title="$title" />
 
@@ -33,13 +31,14 @@
     </nav>
 
     @if ($slot->isNotEmpty())
-        @if ($content_title)
-            <h3 class="mb-1">
-                @lang($content_title)
+        <div class="mb-1 flex">
+            <h3 class="leading-none">
+                @lang($content_title ?? $title)
             </h3>
-        @endif
+            {{ $heading }}
+        </div>
 
-        <div class="grow rounded-lg border border-slate-950/20 bg-white px-5 md:px-10 py-3 md:py-6">
+        <div class="grow rounded-lg border border-slate-950/20 bg-white px-5 py-3 md:px-10 md:py-6">
             {{ $slot }}
         </div>
     @endif

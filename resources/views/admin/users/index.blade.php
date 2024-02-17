@@ -1,4 +1,14 @@
 <x-admin.content title="Users">
+    <x-slot:heading>
+        <x-admin.page-link
+            class="mb-1 ml-auto mt-auto flex items-center gap-1 rounded border border-gray-400 px-5 py-1 text-xs font-semibold uppercase hover:border-transparent hover:bg-indigo-700 hover:text-white"
+            route="admin.users.create"
+        >
+            <x-heroicon-o-plus-circle class="h-5" />
+            @lang('Add')
+        </x-admin.page-link>
+    </x-slot>
+
     <form
         action="{{ route('admin.users.index') }}"
         hx-boost="true"
