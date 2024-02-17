@@ -7,7 +7,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
@@ -16,17 +15,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return view(
-            $request->header('X-HX-Page', false) ? 'admin.users.page' : 'admin.users.index',
-            [
-                'users' => QueryBuilder::for(User::class)
-                    ->allowedFilters(['name', 'email'])
-                    ->defaultSort(['name', 'email'])
-                    ->select('name', 'email')
-                    ->paginate()
-                    ->withQueryString(),
-            ]
-        );
+        return view($request->header('X-HX-Page', false) ? 'admin.users.page' : 'admin.users.index');
     }
 
     /**
