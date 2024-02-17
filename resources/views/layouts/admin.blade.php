@@ -62,14 +62,9 @@
             x-show="started"
         >
             <div class="h-24">
-                <a
+                <x-admin.page-link
                     class="mx-auto text-gray-100 hover:text-emerald-900"
-                    href="{{ route('admin.home') }}"
-                    hx-boost="true"
-                    hx-disabled-elt="this"
-                    hx-indicator="main"
-                    hx-swap="outerHTML"
-                    hx-target="#content"
+                    route="admin.home"
                     x-on:click="if(md) { navOpen = false }"
                     x-on:htmx:after-request="active = ''"
                 >
@@ -77,7 +72,7 @@
                         ::class="navOpen ? 'h-16' : 'h-7'"
                         class="w-full transition-all duration-300"
                     />
-                </a>
+                </x-admin.page-link>
             </div>
 
             @php
@@ -102,18 +97,14 @@
                 x-init="active = @js($active ?? '')"
             >
                 @foreach ($links as $link)
-                    <a
-                        class="flex h-6 items-center text-gray-200 transition-all duration-300 hover:ml-1.5 hover:opacity-20"
-                        href="{{ route(...$link['route']) }}"
-                        hx-boost="true"
-                        hx-disabled-elt="this"
-                        hx-indicator="main"
-                        hx-swap="outerHTML show:no-scroll"
-                        hx-target="#content"
-                        x-data="{
-                            id: @js($link['route'][0]),
-                            isActive: false
-                        }"
+                    <x-admin.page-link
+                        :params="$link['params'] ?? []"
+                        :route="$link['route']"
+                        class="flex h-6 items-center text-gray-200 transition-all duration-300 hover:pl-1.5 hover:opacity-20"
+                        x-data="{{ json_encode([
+                            'id' => $link['route'],
+                            'isActive' => false,
+                        ]) }}"
                         x-effect="isActive = active == id"
                         x-on:click="if(md) { navOpen = false }"
                         x-on:htmx:after-request="active = id"
@@ -142,7 +133,7 @@
                         >
                             @lang($link['label'])
                         </span>
-                    </a>
+                    </x-admin.page-link>
                 @endforeach
             </nav>
         </aside>
