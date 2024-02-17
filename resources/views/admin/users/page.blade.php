@@ -26,7 +26,7 @@
             :font_light="false"
             colspan="all"
         >
-            <div class="min-h-8">
+            <div class="min-h-8 text-slate-500/80">
                 <div class="content flex w-full">
                     <div class="my-auto">
                         {{ $users->render() }}
