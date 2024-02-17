@@ -3,9 +3,9 @@
 <div class="overflow-x-auto">
     <table {{ $attributes->class(['min-w-full table-fixed text-left']) }}>
         <thead class="border-b text-slate-500/80">
-            <tr>
+            <x-admin.table.row>
                 {{ $head }}
-            </tr>
+            </x-admin.table.row>
         </thead>
         <tbody class="divide-y">
             {{ $body }}
