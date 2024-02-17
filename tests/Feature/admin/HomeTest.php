@@ -30,6 +30,5 @@ it('successfully renders admin.home', function () {
         ->assertSeeTitle([])
         ->assertSeeForm(['logout'])
         ->assertSeeInput('_token')
-        ->assertSeeLink(['admin.home'])
-        ->assertSeeLink(['admin.users.index']);
+        ->assertSeeLink(['admin.home']);
 });

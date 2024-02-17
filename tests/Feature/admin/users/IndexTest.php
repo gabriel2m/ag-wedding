@@ -14,6 +14,14 @@ it('requires authentication', function () {
 });
 
 it('requires admin.users.index permission', function () {
+    actingAs(
+        User::factory()
+            ->create()
+            ->givePermissionTo('admin.home')
+    )
+        ->get(route('admin.home'))
+        ->assertDontSeeLink(['admin.users.index'], 'get');
+
     actingAs(User::factory()->create())
         ->get(route('admin.users.index'))
         ->assertForbidden();
@@ -27,14 +35,20 @@ it('successfully renders admin.users.index', function () {
     actingAs($user)
         ->get(route('admin.users.index'))
         ->assertSuccessful()
-        ->assertViewIs('layouts.admin');
+        ->assertViewIs('layouts.admin')
+        ->assertSeeLink(['admin.users.index'], 'get');
 
     actingAs($user)
         ->get(route('admin.users.index'), ['HX-Request' => true])
         ->assertSuccessful()
         ->assertViewIs('admin.users.index')
         ->assertSeeTitle('Users')
-        ->assertSeeForm(['admin.users.index']);
+        ->assertSeeForm(['admin.users.index'])
+        ->assertDontSeeLink(['admin.users.create'], 'get');
+
+    actingAs($user->givePermissionTo('admin.users.create'))
+        ->get(route('admin.users.index'), ['HX-Request' => true])
+        ->assertSeeLink(['admin.users.create'], 'get');
 });
 
 it('successfully paginates', function () {
@@ -51,7 +65,7 @@ it('successfully paginates', function () {
     User::factory(15)->create();
 
     actingAs($user)
-        ->get(route('admin.users.index'), ['HX-Request' => true])
+        ->get(route('admin.users.index'), ['HX-Request' => true, 'X-HX-Page' => true])
         ->assertViewHas('users', function (LengthAwarePaginator $users) use ($user) {
             return $users->getCollection()->toArray() == User::query()
                 ->select('name', 'email')
@@ -71,7 +85,7 @@ it('successfully filters', function (string $attr) {
             ->create()
             ->givePermissionTo('admin.users.index')
     )
-        ->get(route('admin.users.index', ["filter[$attr]" => $user->$attr]), ['HX-Request' => true])
+        ->get(route('admin.users.index', ["filter[$attr]" => $user->$attr]), ['HX-Request' => true, 'X-HX-Page' => true])
         ->assertViewHas('users', function (LengthAwarePaginator $users) use ($user) {
             return $users->getCollection()->toArray() == [$user->only('name', 'email')];
         });
