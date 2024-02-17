@@ -28,6 +28,10 @@
     }
 }
 
+[x-cloak] {
+    @apply !hidden;
+}
+
 .htmx-indicator {
     @apply hidden;
 }
