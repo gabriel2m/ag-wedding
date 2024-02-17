@@ -7,6 +7,10 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -31,7 +35,24 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        return DB::transaction(function () use ($request) {
+            /** @var User */
+            $user = User::create($request->validated() + ['password' => Str::password(8)]);
+            $user->givePermissionTo($request->validated('permissions'));
+            Password::sendResetLink($user->only('email'));
+
+            return response(
+                view('admin.users.index')->withAlert([
+                    'type' => 'success',
+                    'message' => trans_rep(':resource saved', ['resource' => 'User']),
+                ]),
+                Response::HTTP_OK,
+                [
+                    'HX-Retarget' => '#content',
+                    'HX-Push-Url' => route('admin.users.index'),
+                ]
+            );
+        });
     }
 
     /**

@@ -11,6 +11,13 @@
     class="content flex h-full flex-col transition duration-300"
     id="content"
 >
+    @isset($alert)
+        <x-admin.alert
+            :message="$alert['message']"
+            :type="$alert['type']"
+        />
+    @endisset
+
     <nav class="mb-6 flex h-6 items-center gap-1 font-light text-slate-500/90">
         @foreach ($breadcrumb as $item)
             @if (!$loop->last)

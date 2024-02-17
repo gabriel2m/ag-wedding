@@ -10,10 +10,11 @@ use Illuminate\Database\Connectors\PostgresConnector;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -51,6 +52,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::macro('image', fn (string $image) => Vite::asset("resources/images/{$image}"));
+
+        View::macro('withAlert', function (array $alert) {
+            ViewFacade::share('alert', $alert);
+
+            return $this;
+        });
 
         if (config('database.log_queries')) {
             DB::listen(function (QueryExecuted $query) {

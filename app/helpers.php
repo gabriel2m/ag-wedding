@@ -24,3 +24,15 @@ if (! function_exists('trans_cap')) {
         return ucfirst(trans(...func_get_args()));
     }
 }
+
+if (! function_exists('trans_rep')) {
+    /**
+     * Translate the given message and $replace items.
+     */
+    function trans_rep(?string $key = null, array $replace = [], ?string $locale = null): ?string
+    {
+        $replace = array_map(fn ($item) => trans($item), $replace);
+
+        return trans(...func_get_args());
+    }
+}
