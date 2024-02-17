@@ -76,25 +76,19 @@
             </div>
 
             @php
-                $links = [
+                $links = collect([
                     [
-                        'route' => ['admin.users.index'],
+                        'route' => 'admin.users.index',
                         'label' => 'Users',
                         'icon' => 'user-group',
                     ],
-                ];
-
-                foreach ($links as $link) {
-                    if (request()->routeIs("{$link['route'][0]}*")) {
-                        $active = $link['route'][0];
-                    }
-                }
+                ]);
             @endphp
 
             <nav
                 :class="navOpen && 'ml-8'"
                 class="space-y-5 transition-all duration-300"
-                x-init="active = @js($active ?? '')"
+                x-init="active = @js($links->first(fn($link) => request()->routeIs(str($link['route'])->beforeLast('.') . '.*'))['route'] ?? '')"
             >
                 @foreach ($links as $link)
                     <x-admin.page-link
