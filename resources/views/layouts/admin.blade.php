@@ -147,9 +147,15 @@
             </nav>
         </aside>
 
+        <div
+            :class="navOpen ? 'md:w-56' : 'md:w-12'"
+            class="w-0 shrink-0 transition-all duration-300"
+        >
+        </div>
+
         <main
-            :class="navOpen ? 'md:pl-[15.75rem]' : 'md:pl-[4.75rem] 2xl:px-7'"
-            class="mx-auto max-w-full grow space-y-2 px-7 pb-10 pt-28 text-blue-950 transition-all duration-300 md:max-w-[calc(100%-theme('width.12'))] xl:max-w-screen-xl"
+            :class="navOpen ? `md:max-w-[calc(100%-theme('width.56'))]` : `md:max-w-[calc(100%-theme('width.12'))]`"
+            class="mx-auto w-full space-y-2 px-7 pb-10 pt-28 text-blue-950 transition-all duration-300 xl:max-w-screen-xl"
         >
             <div
                 hx-get="{{ request()->fullUrl() }}"
