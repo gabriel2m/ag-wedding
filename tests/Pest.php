@@ -49,9 +49,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function formatUrl(string|array $url)
 {
-    // ..
+    return is_array($url) ? route(...$url) : $url;
 }
 
 TestResponse::macro('assertSeeTitle', function (array|string $sections) {
@@ -59,32 +59,37 @@ TestResponse::macro('assertSeeTitle', function (array|string $sections) {
 });
 
 TestResponse::macro('assertSeeLink', function (string|array $url) {
-    $url = is_array($url) ? route(...$url) : $url;
-
-    return $this->assertSee("href=\"$url\"", false);
+    return $this->assertSeeAttr('href', formatUrl($url));
 });
 
-TestResponse::macro('assertDontSeeHxLink', function (string|array $url, string $method) {
-    $url = is_array($url) ? route(...$url) : $url;
-
-    return $this->assertDontSee("hx-$method=\"$url\"", false);
+TestResponse::macro('assertDontSeeLink', function (string|array $url) {
+    return $this->assertDontSeeAttr('href', formatUrl($url));
 });
 
 TestResponse::macro('assertSeeHxLink', function (string|array $url, string $method) {
-    $url = is_array($url) ? route(...$url) : $url;
+    return $this->assertSeeAttr("hx-$method", formatUrl($url));
+});
 
-    return $this->assertSee("hx-$method=\"$url\"", false);
+TestResponse::macro('assertDontSeeHxLink', function (string|array $url, string $method) {
+    return $this->assertDontSeeAttr("hx-$method", formatUrl($url));
 });
 
 TestResponse::macro('assertSeeForm', function (string|array $action) {
-    $action = is_array($action) ? route(...$action) : $action;
-
-    return $this->assertSee("action=\"$action\"", false);
+    return $this->assertSeeAttr('action', formatUrl($action));
 });
 
 TestResponse::macro('assertSeeInput', function (string $name, ?string $value = null) {
-    return $this->assertSee([
-        $value ? "value=\"$value\"" : '',
-        "name=\"$name\"",
-    ], false);
+    if (isset($value)) {
+        $this->assertSeeAttr('value', $value);
+    }
+
+    return $this->assertSeeAttr('name', $name);
+});
+
+TestResponse::macro('assertSeeAttr', function (string $attr, string $value) {
+    return $this->assertSee("$attr=\"$value\"", false);
+});
+
+TestResponse::macro('assertDontSeeAttr', function (string $attr, string $value) {
+    return $this->assertDontSee("$attr=\"$value\"", false);
 });
