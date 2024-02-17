@@ -28,11 +28,11 @@
     }
 }
 
-.loading {
+.htmx-indicator {
     @apply hidden;
 }
 
-.htmx-request .loading {
+.htmx-request .htmx-indicator {
     @apply flex;
 }
 

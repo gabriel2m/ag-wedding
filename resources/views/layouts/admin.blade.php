@@ -160,7 +160,7 @@
             >
             </div>
 
-            <div class="loading h-2/3 text-slate-400">
+            <div class="htmx-indicator h-2/3 text-slate-400">
                 <x-admin.loading />
             </div>
         </main>
