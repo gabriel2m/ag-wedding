@@ -33,4 +33,18 @@ return [
         realpath(storage_path('framework/views'))
     ),
 
+    /*
+    |--------------------------------------------------------------------------
+    | View Composers Path
+    |--------------------------------------------------------------------------
+    |
+    | This option determines where the view composers are located.
+    |
+    */
+
+    'composers' => env(
+        'VIEW_COMPOSERS_PATH',
+        app_path('View/Composers')
+    ),
+
 ];
