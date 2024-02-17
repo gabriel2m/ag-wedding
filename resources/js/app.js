@@ -4,10 +4,13 @@ import "./bootstrap";
  * Render error response
  */
 htmx.on("htmx:beforeSwap", (evt) => {
-    if (`${evt.detail.xhr.status}`[0] != 2) {
-        evt.detail.shouldSwap = true;
-        evt.detail.target = htmx.find("body");
+    if (!evt.detail.isError) {
+        return;
     }
+
+    evt.detail.shouldSwap = true;
+    evt.detail.target = htmx.find("body");
+    evt.detail.serverResponse = `<pre>${evt.detail.serverResponse}</pre>`;
 });
 
 /**
@@ -15,8 +18,7 @@ htmx.on("htmx:beforeSwap", (evt) => {
  */
 htmx.on("htmx:afterSwap", () => {
     document.querySelectorAll("[name^='filter']").forEach((el) => {
-        const params = new URLSearchParams(window.location.search);
-        el.setAttribute("value", params.get(el.getAttribute("name")) ?? "");
+        el.setAttribute("value", new URLSearchParams(window.location.search).get(el.getAttribute("name")) ?? "");
     });
 });
 
@@ -25,13 +27,7 @@ htmx.on("htmx:afterSwap", () => {
  */
 htmx.on("htmx:afterSwap", () => {
     document.querySelectorAll('[colspan="all"]').forEach((el) => {
-        let cols = 0;
-        el.closest("table")
-            .querySelectorAll("tr")
-            .forEach((tr) => {
-                cols = Math.max(cols, tr.querySelectorAll("td, th").length);
-            });
-        el.setAttribute("colspan", cols);
+        el.setAttribute("colspan", Math.max(...Object.values(el.closest("table").querySelectorAll("tr")).map((tr) => tr.querySelectorAll("td, th").length)));
     });
 });
 
