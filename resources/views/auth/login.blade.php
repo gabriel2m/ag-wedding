@@ -28,21 +28,11 @@
                 type="password"
             />
 
-            <div class="mt-2 flex items-center justify-between">
-                <div class="flex">
-                    <input
-                        class="mr-1 mt-0.5"
-                        id="remember"
-                        name="remember"
-                        type="checkbox"
-                    >
-                    <x-auth.label
-                        :margin="false"
-                        for="remember"
-                        text="Remember me"
-                    />
-                </div>
-
+            <div class="mt-3 flex items-center justify-between">
+                <x-auth.checkbox
+                    class="rounded border-gray-400/90"
+                    name="remember"
+                />
                 <x-auth.text-link
                     href="{{ route('password.request') }}"
                     text="Forgot your password?"
