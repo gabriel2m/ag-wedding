@@ -61,7 +61,7 @@
             x-on:click.outside="if(md) { navOpen = false }"
             x-show="started"
         >
-            <div class="h-24">
+            <div class="h-28">
                 <x-admin.page-link
                     class="mx-auto text-gray-100 hover:text-emerald-900"
                     route="admin.home"
@@ -69,7 +69,7 @@
                     x-on:htmx:after-request="active = ''"
                 >
                     <x-icon-logo
-                        ::class="navOpen ? 'h-16' : 'h-7'"
+                        ::class="navOpen ? 'h-[4.5rem]' : 'h-7'"
                         class="w-full transition-all duration-300"
                     />
                 </x-admin.page-link>
@@ -140,7 +140,7 @@
 
         <main
             :class="navOpen ? `md:max-w-[calc(100%-theme('width.56'))]` : `md:max-w-[calc(100%-theme('width.12'))]`"
-            class="mx-auto w-full space-y-2 px-7 pb-10 pt-28 text-blue-950 transition-all duration-300 xl:max-w-screen-xl"
+            class="mx-auto w-full px-7 pb-10 pt-20 text-blue-950 transition-all duration-300 xl:max-w-screen-xl"
         >
             <div
                 hx-get="{{ request()->fullUrl() }}"
