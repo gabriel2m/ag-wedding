@@ -188,4 +188,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ])->toArray(),
 
+    'admin' => [
+        'email' => env('ADMIN_EMAIL'),
+    ],
 ];
