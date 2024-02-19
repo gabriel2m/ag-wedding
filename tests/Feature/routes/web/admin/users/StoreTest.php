@@ -5,8 +5,6 @@ use App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
 
-uses()->group('admin', 'admin.users', 'admin.users.store');
-
 it('requires authentication', function () {
     post(route('admin.users.store'))
         ->assertRedirectToRoute('login');

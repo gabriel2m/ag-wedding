@@ -6,8 +6,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
-uses()->group('admin', 'admin.users', 'admin.users.index');
-
 it('requires authentication', function () {
     get(route('admin.users.index'))
         ->assertRedirectToRoute('login');

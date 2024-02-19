@@ -5,8 +5,6 @@ use App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
-uses()->group('admin', 'admin.home');
-
 it('requires authentication', function () {
     get(route('admin.home'))
         ->assertRedirectToRoute('login');

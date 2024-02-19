@@ -6,8 +6,6 @@ use Spatie\Permission\Models\Permission;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
-uses()->group('admin', 'admin.users', 'admin.users.create');
-
 it('requires authentication', function () {
     get(route('admin.users.create'))
         ->assertRedirectToRoute('login');

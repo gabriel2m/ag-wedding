@@ -11,8 +11,6 @@ use function Pest\Laravel\assertInvalidCredentials;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses()->group('auth', 'auth.reset-password');
-
 it('successfully renders auth.reset-password', function () {
     $token = Password::createToken($user = User::factory()->create());
 
@@ -192,8 +190,8 @@ it('successfully renders auth.reset-password after invalid password', function (
             'token' => $token,
         ])
         ->assertViewIs('auth.reset-password')
-        ->assertSee(trans('validation.required', [
-            'attribute' => trans('validation.attributes.password'),
+        ->assertSee(trans_rep('validation.required', [
+            'attribute' => 'validation.attributes.password',
         ]))
         ->assertSeeInput('token', $token)
         ->assertSeeInput('email', $user->email);

@@ -11,7 +11,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses()->group('auth', 'auth.forgot-password')->beforeEach(function () {
+uses()->beforeEach(function () {
     Notification::fake();
 });
 

@@ -9,8 +9,6 @@ use function Pest\Laravel\assertGuest;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses()->group('auth', 'auth.login');
-
 it('successfully renders auth.login', function () {
     get(route('login'))
         ->assertSuccessful()
