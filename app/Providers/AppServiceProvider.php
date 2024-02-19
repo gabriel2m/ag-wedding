@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Contracts\Services\UserService as UserServiceContract;
 use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
+use App\Services\UserService;
 use Barryvdh\Debugbar\LaravelDebugbar;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Connectors\PostgresConnector;
@@ -44,6 +46,8 @@ class AppServiceProvider extends ServiceProvider
 
             return $debugbar;
         });
+
+        $this->app->singleton(UserServiceContract::class, UserService::class);
     }
 
     /**
