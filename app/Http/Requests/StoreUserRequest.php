@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
-use Illuminate\Validation\Rule;
-use Spatie\Permission\Models\Permission;
+use App\Rules\PermissionsRules;
+use App\Rules\UserRules;
 
 class StoreUserRequest extends HtmxFormRequest
 {
+    use PermissionsRules, UserRules;
+
     protected string $failView = 'admin.users.inputs';
 
     public function authorize(): bool
@@ -17,26 +18,11 @@ class StoreUserRequest extends HtmxFormRequest
 
     public function rules(): array
     {
-        return [
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-            'email' => [
-                'required',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
-            'permissions' => [
-                'array',
-            ],
-            'permissions.*' => [
-                'integer',
-                Rule::exists(Permission::class, 'id'),
-            ],
-        ];
+        return $this
+            ->userRules()
+            ->only('name', 'email')
+            ->merge($this->permissionsRules())
+            ->toArray();
     }
 
     protected function passedValidation()

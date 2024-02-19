@@ -3,12 +3,13 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Rules\UserRules;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 class UpdateUserPassword implements UpdatesUserPasswords
 {
-    use PasswordValidationRules;
+    use UserRules;
 
     /**
      * Validate and update the user's password.
@@ -19,7 +20,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
     {
         Validator::make($input, [
             'current_password' => ['required', 'string', 'current_password:web'],
-            'password' => $this->passwordRules(),
+            'password' => $this->userRules()->get('password'),
         ], [
             'current_password.current_password' => __('The provided password does not match your current password.'),
         ])->validateWithBag('updatePassword');
