@@ -1,4 +1,6 @@
 <?php
 
 test('trans_cap()', function () {
-})->todo();
+    mockTrans();
+    expect(trans_cap('test'))->toBe('Mock');
+});

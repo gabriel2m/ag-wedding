@@ -1,4 +1,6 @@
 <?php
 
 test('trans_rep()', function () {
-})->todo();
+    mockTrans();
+    expect(trans_rep('test :replace', ['replace' => 'replacement']))->toBe('mock mock');
+});

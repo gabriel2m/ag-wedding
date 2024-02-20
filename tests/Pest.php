@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Testing\TestResponse;
+use Illuminate\Translation\Translator;
+use Mockery\MockInterface;
+
+use function Pest\Laravel\instance;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +52,23 @@ expect()->extend('toBeOne', function () {
 function formatUrl(string|array $url)
 {
     return is_array($url) ? route(...$url) : $url;
+}
+
+function mockTrans()
+{
+    instance(
+        'translator',
+        Mockery::mock(Translator::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')->andReturnUsing(function (string $key, array $replace = []) {
+                $replace = collect($replace)->mapWithKeys(fn ($value, $key) => [":$key" => $value]);
+
+                return str($key)
+                    ->explode(' ')
+                    ->mapWithKeys(fn ($word, $key) => $replace->has($word) ? $replace->only($word) : [$word => 'mock'])
+                    ->implode(' ');
+            });
+        })
+    );
 }
 
 TestResponse::macro('assertSeeTitle', function (array|string $sections) {
