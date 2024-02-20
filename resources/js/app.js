@@ -1,5 +1,14 @@
 import "./bootstrap";
 
+window.store = {
+    get(key) {
+        return JSON.parse(localStorage.getItem(key));
+    },
+    set(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    },
+};
+
 /**
  * Render error response
  */
@@ -46,3 +55,5 @@ htmx.on("htmx:afterSwap", () => {
         el.removeAttribute("hx-headers-merge");
     });
 });
+
+Alpine.start();

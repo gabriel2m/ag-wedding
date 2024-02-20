@@ -8,10 +8,10 @@
             navOpen: false,
             md: window.innerWidth < 769,
             init() {
-                this.navOpen = !!Number(localStorage.getItem('navOpen') ?? !this.md);
+                this.navOpen = store.get('navOpen') ?? !this.md;
             }
         }"
-        x-effect="if(!md) { localStorage.setItem('navOpen', Number(navOpen)) }"
+        x-effect="if(!md) { store.set('navOpen', navOpen) }"
         x-init="$nextTick(() => { started = true })"
     >
         <div
