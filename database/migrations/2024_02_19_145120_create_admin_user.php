@@ -10,6 +10,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (App::runningUnitTests()) {
+            return;
+        }
+
         Artisan::call('app:admin:create');
     }
 
