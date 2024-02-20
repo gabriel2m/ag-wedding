@@ -19,11 +19,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        $rules = $this->userRules()->only('name', 'email');
-
-        $rules->get('email.unique')->ignoreModel($user);
-
-        Validator::make($input, $rules->toArray())->validateWithBag('updateProfileInformation');
+        Validator::make($input, tap(
+            $this->userRules('name', 'email'),
+            fn ($rules) => data_get($rules, 'email.unique')->ignoreModel($user)
+        ))->validateWithBag('updateProfileInformation');
 
         if (
             $input['email'] !== $user->email &&

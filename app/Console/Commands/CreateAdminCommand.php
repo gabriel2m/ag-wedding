@@ -40,7 +40,7 @@ class CreateAdminCommand extends Command
 
             Validator::validate(
                 data: $data->only('email')->toArray(),
-                rules: $this->userRules()->only('email')->toArray(),
+                rules: $this->userRules('email'),
                 attributes: ['email' => 'app.admin.email']
             );
 

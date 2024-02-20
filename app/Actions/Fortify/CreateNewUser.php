@@ -21,7 +21,7 @@ class CreateNewUser implements CreatesNewUsers
         return User::create(
             Validator::validate(
                 $input,
-                $this->userRules()->only('name', 'email', 'password')->toArray()
+                $this->userRules('name', 'email', 'password')
             )
         );
     }

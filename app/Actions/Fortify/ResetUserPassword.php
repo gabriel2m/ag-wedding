@@ -20,7 +20,7 @@ class ResetUserPassword implements ResetsUserPasswords
     {
         Validator::make(
             $input,
-            $this->userRules()->only('password')->toArray()
+            $this->userRules('password')
         )->validate();
 
         $user->password = $input['password'];
