@@ -17,7 +17,7 @@ class Page implements Composer
         $view->users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'email'])
             ->defaultSort(['name', 'email'])
-            ->select('name', 'email')
+            ->select('name', 'email', 'id')
             ->paginate()
             ->withQueryString();
     }

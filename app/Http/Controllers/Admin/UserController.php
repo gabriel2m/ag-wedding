@@ -53,15 +53,29 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user, UserService $userService)
     {
-        //
+        $userService->update($user, $request->validated());
+
+        return response(
+            view('admin.users.index')->withAlert([
+                'type' => 'success',
+                'message' => trans_rep(':resource saved', ['resource' => 'User']),
+            ]),
+            Response::HTTP_OK,
+            [
+                'HX-Retarget' => '#content',
+                'HX-Push-Url' => route('admin.users.index'),
+            ]
+        );
     }
 
     /**

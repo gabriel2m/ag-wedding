@@ -14,15 +14,16 @@ class Inputs implements Composer
 
     public function compose(View $view): void
     {
-        $view->user ??= new User;
-        $view->user->fill(request()->input());
+        $view->user = request()->route('user') ?? new User;
+        $view->user->fill(request()->post());
 
         $permissions = Permission::query()->select('id', 'name')->orderBy('name')->get();
+        $active_permissions = request()->input('permissions', $view->user->permissions->pluck('id')->toArray());
 
         $view->permissions = $permissions
             ->keyBy('id')
-            ->map(function (Permission $permission) use ($permissions) {
-                $permission->active = in_array($permission->id, request()->input('permissions', []));
+            ->map(function (Permission $permission) use ($permissions, $active_permissions) {
+                $permission->active = in_array($permission->id, $active_permissions);
 
                 if (! str_contains($permission->name, '*')) {
                     $permission->permissions = [];
@@ -35,8 +36,7 @@ class Inputs implements Composer
                     ->filter(
                         fn (Permission $sub_permission) => str_starts_with($sub_permission->name, str_replace('*', '', $permission->name))
                     )
-                    ->map(fn (Permission $sub_permission) => $sub_permission->id)
-                    ->values();
+                    ->pluck('id');
 
                 return $permission;
             });

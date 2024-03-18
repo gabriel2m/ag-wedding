@@ -19,6 +19,16 @@
             <x-admin.table.cell class="w-1/2">
                 {{ $user->email }}
             </x-admin.table.cell>
+            <x-admin.table.cell>
+                <x-admin.page-link
+                    :params="$user"
+                    route="admin.users.edit"
+                >
+                    <div class="rounded p-1 hover:bg-indigo-700 hover:text-white">
+                        <x-heroicon-o-pencil-square class="h-4" />
+                    </div>
+                </x-admin.page-link>
+            </x-admin.table.cell>
         </x-admin.table.row>
     @endforeach
     <x-admin.table.row>

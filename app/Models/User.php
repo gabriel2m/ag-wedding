@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -15,13 +16,14 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $id
  * @property string $name
  * @property string $email
- * @property Carbon $email_verified_at
+ * @property ?Carbon $email_verified_at
  * @property string $password
- * @property string $remember_token
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property string $two_factor_secret
- * @property string $two_factor_recovery_codes
+ * @property ?string $remember_token
+ * @property ?Carbon $created_at
+ * @property ?Carbon $updated_at
+ * @property ?string $two_factor_secret
+ * @property ?string $two_factor_recovery_codes
+ * @property Collection<int, Permission> $permissions
  */
 class User extends Authenticatable
 {

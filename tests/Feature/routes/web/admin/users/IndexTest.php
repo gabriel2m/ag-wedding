@@ -66,7 +66,7 @@ it('successfully paginates', function () {
         ->get(route('admin.users.index'), ['HX-Request' => true, 'X-HX-Page' => true])
         ->assertViewHas('users', function (LengthAwarePaginator $users) use ($user) {
             return $users->getCollection()->toArray() == User::query()
-                ->select('name', 'email')
+                ->select('name', 'email', 'id')
                 ->orderBy('name')
                 ->limit($user->getPerPage())
                 ->get()
@@ -85,6 +85,6 @@ it('successfully filters', function (string $attr) {
     )
         ->get(route('admin.users.index', ["filter[$attr]" => $user->$attr]), ['HX-Request' => true, 'X-HX-Page' => true])
         ->assertViewHas('users', function (LengthAwarePaginator $users) use ($user) {
-            return $users->getCollection()->toArray() == [$user->only('name', 'email')];
+            return $users->getCollection()->toArray() == [$user->only('name', 'email', 'id')];
         });
 })->with(['name', 'email']);

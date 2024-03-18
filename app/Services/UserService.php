@@ -20,4 +20,15 @@ class UserService implements UserServiceContract
             });
         });
     }
+
+    public function update(User $user, array $data): bool
+    {
+        return DB::transaction(function () use ($user, $data) {
+            $user->syncPermissions($data['permissions']);
+
+            return $user
+                ->fill($data)
+                ->save();
+        });
+    }
 }

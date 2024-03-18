@@ -8,7 +8,6 @@
             'hx-indicator' => 'main',
             'hx-swap' => 'outerHTML',
             'hx-target' => '#content',
-            'hx-headers-merge' => '{"X-PJAX": true}',
         ]) }}
         href="{{ route($route, $params) }}"
     >
