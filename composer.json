@@ -58,10 +58,6 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "format": [
-            "npx prettier --write resources/",
-            "@php ./vendor/bin/pint"
-        ],
         "vercel": [
             "@php artisan migrate --force",
             "@php artisan app:permissions:create"

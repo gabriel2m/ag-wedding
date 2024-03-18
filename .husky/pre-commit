@@ -1,0 +1,2 @@
+./sail npx lint-staged
+./sail artisan test
