@@ -5,7 +5,7 @@
     'breadcrumb' => [],
 ])
 
-<x-title :title="$title" />
+<x-title :$title />
 
 <div
     class="content flex h-full flex-col transition duration-300"

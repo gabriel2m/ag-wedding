@@ -1,4 +1,4 @@
-@props(['route', 'params' => []])
+@props(['route', 'params' => [], 'title' => null])
 
 @can($route)
     <a
@@ -8,9 +8,9 @@
             'hx-indicator' => 'main',
             'hx-swap' => 'outerHTML',
             'hx-target' => '#content',
-        ]) }}
-        href="{{ route($route, $params) }}"
-    >
+            'href' => route($route, $params),
+            'title' => $title ? trans($title) : false,
+        ]) }}>
         {{ $slot }}
     </a>
 @endcan

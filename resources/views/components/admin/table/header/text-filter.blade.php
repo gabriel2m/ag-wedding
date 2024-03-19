@@ -5,7 +5,7 @@
     $label ??= "validation.attributes.$filter";
 @endphp
 
-<x-admin.table.header :attributes="$attributes">
+<x-admin.table.header :$attributes>
     <div class="flex">
         <x-label
             :for="$name"
@@ -13,7 +13,7 @@
         />
         <div class="relative ml-2 flex items-center border-b">
             <x-text-input
-                :name="$name"
+                :$name
                 :value="request()->input('filter.' . $filter)"
                 class="peer border-0 px-1 py-0 leading-none text-slate-700 filter focus:ring-0"
                 type="text"
