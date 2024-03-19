@@ -48,5 +48,8 @@
   "Cancel": "Cancelar",
   "Save": "Salvar",
   "Edit": "Editar",
-  ":resource saved": ":resource salvo"
+  "Remove": "Remover",
+  ":resource saved": ":resource salvo",
+  ":resource removed": ":resource removido",
+  "Are you sure?": "Tem certeza?"
 }
