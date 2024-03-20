@@ -53,12 +53,9 @@
         >
             <div class="min-h-8 text-slate-500/80">
                 <div class="content flex w-full">
-                    <div class="my-auto">
-                        {{ $users->render() }}
-                    </div>
                     @if ($users->hasMorePages())
                         <button
-                            class="ml-auto h-min rounded border border-slate-200 px-6 py-1.5 text-xs uppercase text-slate-700 hover:bg-neutral-500 hover:bg-opacity-10"
+                            class="m-auto h-min rounded border border-slate-200 px-6 py-1.5 text-xs uppercase text-slate-700 hover:bg-neutral-500 hover:bg-opacity-10"
                             hx-disabled-elt="this"
                             hx-get="{{ $users->nextPageUrl() }}"
                             hx-indicator="closest tr"

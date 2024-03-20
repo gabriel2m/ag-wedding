@@ -18,7 +18,7 @@ class Page implements Composer
             ->allowedFilters(['name', 'email'])
             ->defaultSort(['name', 'email'])
             ->select('name', 'email', 'id')
-            ->paginate()
+            ->cursorPaginate()
             ->withQueryString();
     }
 }
