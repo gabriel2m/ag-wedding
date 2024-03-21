@@ -8,7 +8,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -36,13 +35,13 @@ class UserController extends Controller
         $userService->create($request->validated());
 
         return response(
-            view('admin.users.index')->withAlert([
+            content: view('admin.users.index')->withAlert([
                 'type' => 'success',
                 'message' => trans_rep(':resource saved', ['resource' => 'User']),
             ]),
-            Response::HTTP_OK,
-            [
+            headers: [
                 'HX-Retarget' => '#content',
+                'HX-Reswap' => 'outerHTML',
                 'HX-Push-Url' => route('admin.users.index'),
             ]
         );
@@ -66,13 +65,13 @@ class UserController extends Controller
         $userService->update($user, $request->validated());
 
         return response(
-            view('admin.users.index')->withAlert([
+            content: view('admin.users.index')->withAlert([
                 'type' => 'success',
                 'message' => trans_rep(':resource saved', ['resource' => 'User']),
             ]),
-            Response::HTTP_OK,
-            [
+            headers: [
                 'HX-Retarget' => '#content',
+                'HX-Reswap' => 'outerHTML',
                 'HX-Push-Url' => route('admin.users.index'),
             ]
         );
