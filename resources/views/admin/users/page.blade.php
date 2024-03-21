@@ -20,6 +20,7 @@
                 <x-admin.table.cell>
                     <x-admin.page-link
                         :params="$user"
+                        class="block w-min"
                         route="admin.users.edit"
                         title="Edit"
                     >

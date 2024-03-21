@@ -24,30 +24,34 @@
                 {{ $guest->phone_number }}
             </x-admin.table.cell>
             <x-admin.table.cell class="flex">
-                <select
-                    :class="{
-                        'border-gray-400': response == {{ WeddingGuestResponse::PENDING->value }},
-                        'border-green-400': response == {{ WeddingGuestResponse::WILL->value }},
-                        'border-red-400': response == {{ WeddingGuestResponse::WILL_NOT->value }},
-                    }"
-                    class="m-auto rounded bg-inherit py-1 text-sm"
-                    hx-disabled-elt="this"
-                    hx-headers-merge="{{ '{ "X-HX-Only-Alert": true }' }}"
-                    hx-on:htmx:config-request="event.detail.parameters.response = event.detail.elt.value"
-                    hx-post="{{ route('admin.guests.answer', $guest) }}"
-                    hx-swap="none"
-                    hx-target="this"
-                    x-on:change="response = $el.value"
-                >
-                    @foreach (WeddingGuestResponse::cases() as $response)
-                        <option
-                            @selected($response == $guest->response)
-                            value="{{ $response->value }}"
-                        >
-                            {{ $response->label() }}
-                        </option>
-                    @endforeach
-                </select>
+                @can('admin.guests.answer')
+                    <select
+                        :class="{
+                            'border-gray-400': response == {{ WeddingGuestResponse::PENDING->value }},
+                            'border-green-400': response == {{ WeddingGuestResponse::WILL->value }},
+                            'border-red-400': response == {{ WeddingGuestResponse::WILL_NOT->value }},
+                        }"
+                        class="m-auto rounded bg-inherit py-1 text-sm"
+                        hx-disabled-elt="this"
+                        hx-headers-merge="{{ '{ "X-HX-Only-Alert": true }' }}"
+                        hx-on:htmx:config-request="event.detail.parameters.response = event.detail.elt.value"
+                        hx-post="{{ route('admin.guests.answer', $guest) }}"
+                        hx-swap="none"
+                        hx-target="this"
+                        x-on:change="response = $el.value"
+                    >
+                        @foreach (WeddingGuestResponse::cases() as $response)
+                            <option
+                                @selected($response == $guest->response)
+                                value="{{ $response->value }}"
+                            >
+                                {{ $response->label() }}
+                            </option>
+                        @endforeach
+                    </select>
+                @else
+                    {{ $guest->response->label() }}
+                @endcan
             </x-admin.table.cell>
             @can('admin.guests.edit')
                 <x-admin.table.cell>
