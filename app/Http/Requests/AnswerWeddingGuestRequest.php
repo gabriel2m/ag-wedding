@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\WeddingGuestResponse;
+use App\Rules\WeddingGuestRules;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class AnswerWeddingGuestRequest extends FormRequest
 {
+    use WeddingGuestRules;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,8 +24,6 @@ class AnswerWeddingGuestRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'response' => Rule::enum(WeddingGuestResponse::class),
-        ];
+        return $this->weddingGuestRules('response');
     }
 }
