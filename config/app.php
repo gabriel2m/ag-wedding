@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\WeddingGuestResponse;
+use App\Models\WeddingGuest;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -186,6 +188,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'WeddingGuestResponse' => WeddingGuestResponse::class,
+        'WeddingGuest' => WeddingGuest::class,
     ])->toArray(),
 
     'admin' => [
