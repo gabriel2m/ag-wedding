@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "prod": "vite build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write resources/"
   },
   "devDependencies": {
     "@shufo/prettier-plugin-blade": "^1.13.4",
