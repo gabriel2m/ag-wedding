@@ -6,4 +6,7 @@ htmx.config.scrollIntoViewOnBoost = false;
 import Alpine from "alpinejs";
 window.Alpine = Alpine;
 
+import Inputmask from "inputmask";
+window.Inputmask = Inputmask;
+
 import.meta.glob(["../images/**"]);

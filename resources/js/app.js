@@ -56,4 +56,8 @@ htmx.on("htmx:afterSwap", () => {
     });
 });
 
+htmx.onLoad(function (content) {
+    Inputmask().mask(content.querySelectorAll("input"));
+});
+
 Alpine.start();
