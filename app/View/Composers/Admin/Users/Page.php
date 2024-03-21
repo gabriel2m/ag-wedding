@@ -3,6 +3,7 @@
 namespace App\View\Composers\Admin\Users;
 
 use App\Contracts\View\Composer;
+use App\Http\QueryBuilder\AllowedFilter;
 use App\Models\User;
 use App\View\Composers\NamesakeView;
 use Illuminate\View\View;
@@ -15,7 +16,10 @@ class Page implements Composer
     public function compose(View $view): void
     {
         $view->users = QueryBuilder::for(User::class)
-            ->allowedFilters(['name', 'email'])
+            ->allowedFilters(
+                AllowedFilter::partial('name'),
+                'email'
+            )
             ->defaultSort(['name', 'email'])
             ->select('name', 'email', 'id')
             ->cursorPaginate()
