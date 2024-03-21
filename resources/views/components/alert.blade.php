@@ -28,7 +28,7 @@
                     'info' => 'text-blue-900',
                 },
             ])>
-                {{ $message }}
+                @lang($message)
                 <button
                     class="mb-auto mt-0.5"
                     type="button"

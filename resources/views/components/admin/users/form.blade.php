@@ -23,10 +23,10 @@
             @lang('Cancel')
         </x-admin.page-link>
         <button
-            class="group flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-semibold text-indigo-600 hover:bg-indigo-700 hover:text-white"
+            class="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-semibold text-indigo-600 hover:bg-indigo-700 hover:text-white"
             type="submit"
         >
-            <x-heroicon-o-check class="h-5 group-[.htmx-request]:hidden" />
+            <x-heroicon-o-check class="content h-5" />
             <div class="htmx-indicator h-5 w-5">
                 <x-admin.loading class="h-4 w-4" />
             </div>

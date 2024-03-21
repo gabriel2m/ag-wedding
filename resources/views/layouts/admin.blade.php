@@ -94,6 +94,7 @@
                     <x-admin.page-link
                         :params="$link['params'] ?? []"
                         :route="$link['route']"
+                        :title="$link['label']"
                         class="flex h-6 items-center text-gray-200 transition-all duration-300 hover:pl-1.5 hover:opacity-20"
                         x-data="{{ json_encode([
                             'id' => $link['route'],

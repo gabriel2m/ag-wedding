@@ -19,13 +19,10 @@
         <x-admin.table id="users-table">
             <x-slot:head>
                 <x-admin.table.header.text-filter
-                    class="w-1/2"
+                    class="w-96"
                     filter="name"
                 />
-                <x-admin.table.header.text-filter
-                    class="w-1/2"
-                    filter="email"
-                />
+                <x-admin.table.header.text-filter filter="email" />
             </x-slot>
             <x-slot:body>
                 @include('admin.users.page')
