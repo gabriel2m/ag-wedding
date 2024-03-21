@@ -195,6 +195,8 @@ return [
         'number' => 'número',
         'password' => 'senha',
         'phone' => 'telefone',
+        'phone_number' => 'telefone',
+        'response' => 'resposta',
         'second' => 'segundo',
         'sex' => 'sexo',
         'state' => 'estado',

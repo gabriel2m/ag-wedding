@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WeddingGuestController;
 use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,6 @@ Route::prefix('admin')->name('admin.')->middleware([
     });
 
     Route::resource('users', UserController::class)->except('show');
+    Route::post('guests/{guest}/answer', [WeddingGuestController::class, 'answer'])->name('guests.answer');
+    Route::resource('guests', WeddingGuestController::class)->except('show');
 });

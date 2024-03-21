@@ -24,7 +24,7 @@
         </div>
 
         <header
-            :class="navOpen ? 'pl-[15.75rem]' : 'md:pl-[4.75rem]'"
+            :class="navOpen ? 'pl-[17.75rem]' : 'md:pl-[4.75rem]'"
             class="fixed z-30 flex h-16 w-full items-center border-b border-gray-300 bg-white px-7 py-2 transition-all duration-300"
         >
             <button
@@ -55,7 +55,7 @@
         </header>
 
         <aside
-            :class="navOpen ? 'w-56' : 'w-0 md:w-12'"
+            :class="navOpen ? 'w-64' : 'w-0 md:w-12'"
             class="fixed z-40 h-screen bg-emerald-950 py-5 transition-all duration-300 md:px-2"
             x-data="{ active: '' }"
             x-on:click.outside="if(md) { navOpen = false }"
@@ -78,6 +78,11 @@
             @php
                 $links = collect([
                     [
+                        'route' => 'admin.guests.index',
+                        'label' => 'Guest List',
+                        'icon' => 'clipboard-document-list',
+                    ],
+                    [
                         'route' => 'admin.users.index',
                         'label' => 'Users',
                         'icon' => 'user-group',
@@ -86,7 +91,7 @@
             @endphp
 
             <nav
-                :class="navOpen && 'ml-8'"
+                :class="navOpen && 'ml-7'"
                 class="space-y-5 transition-all duration-300"
                 x-init="active = @js($links->first(fn($link) => request()->routeIs(str($link['route'])->beforeLast('.') . '.*'))['route'] ?? '')"
             >
@@ -134,13 +139,13 @@
         </aside>
 
         <div
-            :class="navOpen ? 'md:w-56' : 'md:w-12'"
+            :class="navOpen ? 'md:w-64' : 'md:w-12'"
             class="w-0 shrink-0 transition-all duration-300"
         >
         </div>
 
         <main
-            :class="navOpen ? `md:max-w-[calc(100%-theme('width.56'))]` : `md:max-w-[calc(100%-theme('width.12'))]`"
+            :class="navOpen ? `md:max-w-[calc(100%-theme('width.64'))]` : `md:max-w-[calc(100%-theme('width.12'))]`"
             class="mx-auto w-full px-7 pb-10 pt-20 text-blue-950 transition-all duration-300 xl:max-w-screen-xl"
         >
             <div

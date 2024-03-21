@@ -38,6 +38,7 @@
   "Users": "Usuários",
   "User": "Usuário",
   "No users found": "Nenhum usuário encontrado",
+  "No guests found": "Nenhum convidado encontrado",
   "Name": "Nome",
   "Load more": "Carregar mais",
   "Showing": "Exibindo",
@@ -51,5 +52,11 @@
   "Remove": "Remover",
   ":resource saved": ":resource salvo",
   ":resource removed": ":resource removido",
-  "Are you sure?": "Tem certeza?"
+  "Are you sure?": "Tem certeza?",
+  "Pending": "Pendente",
+  "Will": "Irá",
+  "Will not": "Não irá",
+  "Guest List": "Lista de convidados",
+  "Guest": "Convidado",
+  "Response saved": "Resposta salva"
 }
