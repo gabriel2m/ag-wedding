@@ -85,6 +85,9 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return view('admin.users.destroyed');
+        return view('admin.alert', [
+            'message' => trans_rep(':resource removed', ['resource' => 'User']),
+            'type' => 'warning',
+        ]);
     }
 }
