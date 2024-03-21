@@ -54,8 +54,6 @@ it('successfully paginates', function () {
         ->create()
         ->givePermissionTo('admin.users.index');
 
-    $nextPage = [['admin.users.index', ['page' => 2]], 'get'];
-
     actingAs($user)
         ->get(route('admin.users.index'), ['HX-Request' => true])
         ->assertDontSee(trans('Load more'));

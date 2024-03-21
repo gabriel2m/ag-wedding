@@ -19,8 +19,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property ?Carbon $email_verified_at
  * @property string $password
  * @property ?string $remember_token
- * @property ?Carbon $created_at
- * @property ?Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property ?string $two_factor_secret
  * @property ?string $two_factor_recovery_codes
  * @property Collection<int, Permission> $permissions
