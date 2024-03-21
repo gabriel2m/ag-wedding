@@ -23,7 +23,7 @@ class WeddingGuestController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.guests.create');
     }
 
     /**
@@ -31,15 +31,19 @@ class WeddingGuestController extends Controller
      */
     public function store(StoreWeddingGuestRequest $request)
     {
-        //
-    }
+        WeddingGuest::create($request->validated());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(WeddingGuest $guest)
-    {
-        //
+        return response(
+            content: view('admin.guests.index')->withAlert([
+                'type' => 'success',
+                'message' => trans_rep(':resource saved', ['resource' => 'Guest']),
+            ]),
+            headers: [
+                'HX-Retarget' => '#content',
+                'HX-Reswap' => 'outerHTML',
+                'HX-Push-Url' => route('admin.guests.index'),
+            ]
+        );
     }
 
     /**
@@ -47,7 +51,7 @@ class WeddingGuestController extends Controller
      */
     public function edit(WeddingGuest $guest)
     {
-        //
+        return view('admin.guests.edit', compact('guest'));
     }
 
     /**
@@ -55,7 +59,19 @@ class WeddingGuestController extends Controller
      */
     public function update(UpdateWeddingGuestRequest $request, WeddingGuest $guest)
     {
-        //
+        $guest->fill($request->validated())->save();
+
+        return response(
+            content: view('admin.guests.index')->withAlert([
+                'type' => 'success',
+                'message' => trans_rep(':resource saved', ['resource' => 'Guest']),
+            ]),
+            headers: [
+                'HX-Retarget' => '#content',
+                'HX-Reswap' => 'outerHTML',
+                'HX-Push-Url' => route('admin.guests.index'),
+            ]
+        );
     }
 
     /**

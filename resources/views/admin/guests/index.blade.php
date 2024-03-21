@@ -1,4 +1,14 @@
-<x-admin.content title="Guest List">
+<x-admin.content title="Guest list">
+    <x-slot:heading>
+        <x-admin.page-link
+            class="mb-1 ml-auto mt-auto flex items-center gap-1 rounded border border-gray-400 px-5 py-1 text-xs font-semibold uppercase hover:border-transparent hover:bg-indigo-700 hover:text-white"
+            route="admin.guests.create"
+        >
+            <x-heroicon-o-plus-circle class="h-5" />
+            @lang('Add')
+        </x-admin.page-link>
+    </x-slot>
+
     <form
         action="{{ route('admin.guests.index') }}"
         hx-boost="true"
@@ -23,7 +33,8 @@
                         text="validation.attributes.response"
                     />
                     <select
-                        class="ml-2 rounded border-gray-200 py-1 text-sm text-slate-700"
+                        class="ml-2 rounded border-gray-200 py-1 text-sm text-slate-700 focus:border-gray-500 focus:ring-0"
+                        id="filter[response]"
                         name="filter[response]"
                     >
                         <option></option>

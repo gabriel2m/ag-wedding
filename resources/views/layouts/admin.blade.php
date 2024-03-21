@@ -79,7 +79,7 @@
                 $links = collect([
                     [
                         'route' => 'admin.guests.index',
-                        'label' => 'Guest List',
+                        'label' => 'Guest list',
                         'icon' => 'clipboard-document-list',
                     ],
                     [
