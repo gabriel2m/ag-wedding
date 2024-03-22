@@ -1,3 +1,5 @@
+@import "/node_modules/inter-ui/inter-variable.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

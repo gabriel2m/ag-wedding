@@ -18,11 +18,6 @@
 
     <x-title :title="$title ?? null" />
 
-    <link
-        href="https://rsms.me/inter/inter.css"
-        rel="stylesheet"
-    >
-
     @vite('resources/css/app.css')
     @stack('styles')
 </head>
