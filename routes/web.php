@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WeddingGuestController;
 use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return to_route('admin.home');
-})->name('home');
+Route::view('/', 'home', [
+    'diff' => Carbon::createFromDate(2024, 6, 8)->startOfDay()->diffInMilliseconds(now()),
+])->name('home');
 
 Route::prefix('admin')->name('admin.')->middleware([
     'auth',

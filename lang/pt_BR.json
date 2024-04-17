@@ -59,5 +59,9 @@
   "Guest list": "Lista de convidados",
   "Guest": "Convidado",
   "Response saved": "Resposta salva",
-  "Add guest": "Adicionar convidado"
+  "Add guest": "Adicionar convidado",
+  "days": "dias",
+  "hours": "horas",
+  "minutes": "minutos",
+  "seconds": "segundos"
 }
