@@ -164,6 +164,6 @@
     </div>
 @overwrite
 
-@section('scripts')
+@push('scripts')
     @vite('resources/js/admin.js')
-@endsection
+@endpush
