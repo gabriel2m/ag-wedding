@@ -158,7 +158,7 @@
                             height="250"
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.0007064409288!2d-44.36226412487633!3d-15.484394185113521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x755dd6265fa0a1f%3A0xb705bdf008c82c23!2sHoly%20Family%20Parish!5e0!3m2!1sen!2sbr!4v1713225947813!5m2!1sen!2sbr"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.994448646936!2d-44.362313624876414!3d-15.484730785113198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x755dd6265fa0a1f%3A0xb705bdf008c82c23!2sPar%C3%B3quia%20Sagrada%20Fam%C3%ADlia!5e0!3m2!1spt-BR!2sbr!4v1713400046962!5m2!1spt-BR!2sbr"
                             style="border:0;"
                             width="334"
                         ></iframe>
@@ -203,7 +203,7 @@
                             height="250"
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.1576557487074!2d-44.34569970931735!3d-15.47594971505145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7542b54f62b71ed%3A0xee4b340cb3c31d8!2zRXNwYcOnbyBJbXDDqXJpbyAtIEphbnXDoXJpYQ!5e0!3m2!1sen!2sbr!4v1713298163948!5m2!1sen!2sbr"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.0859524099938!2d-44.348336024876424!3d-15.47980818511747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7542b54f62b71ed%3A0xee4b340cb3c31d8!2zRXNwYcOnbyBJbXDDqXJpbyAtIEphbnXDoXJpYQ!5e0!3m2!1spt-BR!2sbr!4v1713400270598!5m2!1spt-BR!2sbr"
                             style="border:0;"
                             width="334"
                         ></iframe>
