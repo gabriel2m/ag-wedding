@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run prod",
+  "buildCommand": "npm run prod -- --base=https://amandaegabriel.site",
   "outputDirectory": "public/build",
   "functions": {
     "api/index.php": {
