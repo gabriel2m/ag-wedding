@@ -62,12 +62,12 @@
     </div>
     <div class="mx-auto max-w-screen-2xl px-2 sm:px-10">
         <div
-            class="font-poppins flex min-h-dvh flex-col justify-center py-20 text-green-950"
+            class="font-poppins flex min-h-dvh flex-col justify-center py-20 text-green-950 2xl:px-24"
             id="area-1"
         >
             <div
-                class="font-quattrocento flex h-[650px] flex-wrap bg-[url('https://raw.githubusercontent.com/gabriel2m/imgs/main/1.png')] bg-[length:auto_100%] bg-center bg-no-repeat 2xl:px-24">
-                <div>
+                class="font-quattrocento flex h-[650px] flex-wrap relative">
+                <div class="z-10">
                     <h5 class="mb-8">
                         Sábado, 08 de junho de 2024
                     </h5>
@@ -77,6 +77,9 @@
                         <span class="opacity-50">&</span>
                         Gabriel
                     </h1>
+                </div>
+                <div class="absolute z-0 flex w-full">
+                    <img src="https://raw.githubusercontent.com/gabriel2m/imgs/main/1.jpg" class="w-[420px] m-auto rounded-[50rem]"/>
                 </div>
                 <x-icon-lily class="mx-auto hidden h-96 rotate-[30deg] scale-x-[-1] md:block lg:h-[30rem]" />
             </div>
@@ -114,8 +117,8 @@
     >
         <div class="grid w-full sm:grid-cols-2">
             <img
-                class="w-[715px] rounded-xl md:rounded-none"
-                src="https://raw.githubusercontent.com/gabriel2m/imgs/main/2.png"
+                class="w-[715px] rounded-xl md:rounded-s-none"
+                src="https://raw.githubusercontent.com/gabriel2m/imgs/main/2.jpg"
             >
             <div class="flex flex-col justify-center p-5 text-center">
                 <p class="text-2xl italic">
@@ -127,19 +130,19 @@
         </div>
         <img
             class="w-[528px] rounded-xl"
-            src="https://github.com/gabriel2m/imgs/blob/main/3.png?raw=true"
-        >
-        <img
-            class="w-[223px]"
-            src="https://github.com/gabriel2m/imgs/blob/main/4.png?raw=true"
-        >
-        <img
-            class="w-[528px]"
-            src="https://github.com/gabriel2m/imgs/blob/main/5.png?raw=true"
+            src="https://github.com/gabriel2m/imgs/blob/main/3.jpg?raw=true"
         >
         <img
             class="w-[223px] rounded-xl"
-            src="https://github.com/gabriel2m/imgs/blob/main/6.png?raw=true"
+            src="https://github.com/gabriel2m/imgs/blob/main/4.jpg?raw=true"
+        >
+        <img
+            class="w-[528px] rounded-xl"
+            src="https://github.com/gabriel2m/imgs/blob/main/5.jpg?raw=true"
+        >
+        <img
+            class="w-[223px] rounded-xl"
+            src="https://github.com/gabriel2m/imgs/blob/main/6.jpg?raw=true"
         >
     </div>
     <div class="mx-auto max-w-screen-2xl px-2 sm:px-10">
