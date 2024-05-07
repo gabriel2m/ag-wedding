@@ -42,8 +42,8 @@
                 <a href="#area-2">Contagem regressiva</a>
                 <a href="#area-3">Galeria</a>
                 <a href="#area-4">Locais e horários</a>
+                <a href="#area-5">Confirmação</a>
             </nav>
-            {{-- <div class="hidden md:block"></div> --}}
             <x-heroicon-o-bars-3
                 class="block h-9 md:hidden"
                 x-on:click="open=!open"
@@ -56,6 +56,7 @@
                 <a href="#area-2">Contagem regressiva</a>
                 <a href="#area-3">Galeria</a>
                 <a href="#area-4">Locais e horários</a>
+                <a href="#area-5">Confirmação</a>
             </nav>
         </div>
     </div>
@@ -246,6 +247,23 @@
                     <x-icon-lily class="h-[30rem] rotate-[-35deg] text-lime-800" />
                 </div>
             </div>
+        </div>
+        <div
+            class="font-poppins flex min-h-dvh flex-col justify-center gap-20 py-20"
+            id="area-5"
+        >
+            <h3 class="text-center font-semibold text-slate-900">
+                Confirmação de presença
+            </h3>
+            <iframe
+                class="min-h-svh w-full"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSek05mg12bPaufG5atu1aPgBQbZa1gf03aoQnT2AAKVP_0f1w/viewform?embedded=true"
+            >
+                Carregando…
+            </iframe>
         </div>
     </div>
 @overwrite
