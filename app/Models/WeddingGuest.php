@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * @property string $id
+ * @property int $id
  * @property string $name
  * @property ?string $phone_number
  * @property WeddingGuestResponse $response

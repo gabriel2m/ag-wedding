@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
- * @property string $id
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property ?Carbon $email_verified_at
