@@ -4,7 +4,7 @@
             class="h-56 w-full"
             src="{{ $gift->image }}"
         />
-        <p class="p-8 text-xl">
+        <p class="px-8 pt-5 text-xl">
             {{ $gift->name }}
         </p>
         <div class="mb-6 mt-auto px-8">
