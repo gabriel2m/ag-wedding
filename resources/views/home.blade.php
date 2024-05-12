@@ -43,6 +43,7 @@
                 <a href="#area-3">Galeria</a>
                 <a href="#area-4">Locais e horários</a>
                 <a href="#area-5">Confirmação</a>
+                <a href="#area-6">Lista de Presentes</a>
             </nav>
             <x-heroicon-o-bars-3
                 class="block h-9 md:hidden"
@@ -57,6 +58,7 @@
                 <a href="#area-3">Galeria</a>
                 <a href="#area-4">Locais e horários</a>
                 <a href="#area-5">Confirmação</a>
+                <a href="#area-6">Lista de Presentes</a>
             </nav>
         </div>
     </div>
@@ -65,8 +67,7 @@
             class="font-poppins flex min-h-dvh flex-col justify-center py-20 text-green-950 2xl:px-24"
             id="area-1"
         >
-            <div
-                class="font-quattrocento flex h-[650px] flex-wrap relative">
+            <div class="font-quattrocento relative flex h-[650px] flex-wrap">
                 <div class="z-10">
                     <h5 class="mb-8">
                         Sábado, 08 de junho de 2024
@@ -79,7 +80,10 @@
                     </h1>
                 </div>
                 <div class="absolute z-0 flex w-full">
-                    <img src="https://raw.githubusercontent.com/gabriel2m/imgs/main/1.jpg" class="w-[420px] m-auto rounded-[50rem]"/>
+                    <img
+                        class="m-auto w-[420px] rounded-[50rem]"
+                        src="https://raw.githubusercontent.com/gabriel2m/imgs/main/1.jpg"
+                    />
                 </div>
                 <x-icon-lily class="mx-auto hidden h-96 rotate-[30deg] scale-x-[-1] md:block lg:h-[30rem]" />
             </div>
@@ -267,6 +271,21 @@
             >
                 Carregando…
             </iframe>
+        </div>
+        <div
+            class="font-poppins flex min-h-dvh flex-col justify-center gap-20 py-20"
+            id="area-6"
+        >
+            <h3 class="text-center font-semibold text-slate-900">
+                Lista de Presentes
+            </h3>
+
+            <div
+                class="flex flex-wrap justify-around gap-12"
+                hx-get="{{ route('gifts.index') }}"
+                hx-trigger="load"
+            >
+            </div>
         </div>
     </div>
 @overwrite

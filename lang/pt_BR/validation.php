@@ -136,7 +136,7 @@ return [
     'timezone' => 'O campo :attribute deve ser uma zona válida.',
     'unique' => 'O campo :attribute já está sendo utilizado.',
     'uploaded' => 'Ocorreu uma falha no upload do campo :attribute.',
-    'url' => 'O campo :attribute tem um formato inválido.',
+    'url' => 'O campo :attribute não é URL uma válida.',
     'uuid' => 'O campo :attribute deve ser um UUID válido.',
 
     /*
@@ -219,6 +219,8 @@ return [
         'email' => 'email',
         'permissions' => 'permissões',
         'permissions.*' => 'permissão',
+        'image' => 'imagem',
+        'price' => 'preço',
     ],
 
 ];

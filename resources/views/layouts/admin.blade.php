@@ -78,6 +78,11 @@
             @php
                 $links = collect([
                     [
+                        'route' => 'admin.gifts.index',
+                        'label' => 'Gift list',
+                        'icon' => 'archive-box',
+                    ],
+                    [
                         'route' => 'admin.guests.index',
                         'label' => 'Guest list',
                         'icon' => 'clipboard-document-list',

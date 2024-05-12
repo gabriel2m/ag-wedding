@@ -39,12 +39,14 @@
   "User": "Usuário",
   "No users found": "Nenhum usuário encontrado",
   "No guests found": "Nenhum convidado encontrado",
+  "No gifts found": "Nenhum presente encontrado",
   "Name": "Nome",
   "Load more": "Carregar mais",
   "Showing": "Exibindo",
   "of": "de",
   "Add": "Adicionar",
   "Add user": "Adicionar usuário",
+  "Add gift": "Adicionar presente",
   "Permissions": "Permissões",
   "Cancel": "Cancelar",
   "Save": "Salvar",
@@ -63,5 +65,7 @@
   "days": "dias",
   "hours": "horas",
   "minutes": "minutos",
-  "seconds": "segundos"
+  "seconds": "segundos",
+  "Gift list": "Lista de presentes",
+  "Gift": "Presente"
 }
