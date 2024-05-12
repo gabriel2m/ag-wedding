@@ -138,6 +138,7 @@ return [
     'uploaded' => 'Ocorreu uma falha no upload do campo :attribute.',
     'url' => 'O campo :attribute não é URL uma válida.',
     'uuid' => 'O campo :attribute deve ser um UUID válido.',
+    'decimal' => 'O campo :attribute deve ser um valor válido.',
 
     /*
     |--------------------------------------------------------------------------

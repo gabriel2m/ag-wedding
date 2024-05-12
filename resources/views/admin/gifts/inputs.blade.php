@@ -25,7 +25,7 @@
         <x-admin.label for="price" />
         <x-admin.text-input
             autocomplete="off"
-            data-inputmask="'alias': 'currency'"
+            data-inputmask="'alias': 'currency', 'autoUnmask': true"
             name="price"
             type="text"
             value="{{ $gift->price }}"
