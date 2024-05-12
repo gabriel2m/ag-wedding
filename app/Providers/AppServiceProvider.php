@@ -10,6 +10,7 @@ use Barryvdh\Debugbar\LaravelDebugbar;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Connectors\PostgresConnector;
 use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -62,6 +63,8 @@ class AppServiceProvider extends ServiceProvider
 
             return $this;
         });
+
+        Blade::directive('reais', fn ($value) => "<?php echo reais($value); ?>");
 
         if (config('database.log_queries')) {
             DB::listen(function (QueryExecuted $query) {

@@ -36,3 +36,10 @@ if (! function_exists('trans_rep')) {
         return trans(...func_get_args());
     }
 }
+
+if (! function_exists('reais')) {
+    function reais(float $value): string
+    {
+        return 'R$&nbsp;'.number_format($value, 2, ',', '.');
+    }
+}
