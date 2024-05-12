@@ -40,7 +40,7 @@ class GiftController extends Controller
         return response(
             content: view('admin.gifts.index')->withAlert([
                 'type' => 'success',
-                'message' => trans_rep(':resource saved', ['resource' => 'Guest']),
+                'message' => trans_rep(':resource saved', ['resource' => 'Gift']),
             ]),
             headers: [
                 'HX-Retarget' => '#content',
