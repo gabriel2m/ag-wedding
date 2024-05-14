@@ -21,10 +21,10 @@
                 @lang('Give')
             </button>
             <div
-                class="fixed left-0 top-0 z-50 flex h-full w-full bg-gray-500 bg-opacity-50"
+                class="fixed left-0 top-0 z-50 flex h-full w-full bg-gray-500 bg-opacity-50 px-2"
                 x-show="showModal"
             >
-                <div class="m-auto flex flex-wrap rounded-xl border bg-white px-5 py-3 shadow">
+                <div class="m-auto flex w-screen flex-wrap rounded-xl border bg-white px-5 py-3 shadow sm:w-[26rem]">
                     <button
                         class="mb-auto ml-auto mt-0.5 text-gray-600"
                         type="button"
