@@ -222,6 +222,7 @@ return [
         'permissions.*' => 'permissão',
         'image' => 'imagem',
         'price' => 'preço',
+        'amount' => 'valor',
     ],
 
 ];

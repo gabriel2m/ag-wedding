@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\GiftController as AdminGiftController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WeddingGuestController;
 use App\Http\Controllers\GiftController;
+use App\Http\Controllers\PixController;
 use App\Http\Middleware\IsHtmx;
 use App\Http\Middleware\RoutePermission;
 use Illuminate\Support\Carbon;
@@ -25,6 +26,7 @@ Route::view('/', 'home', [
 ])->name('home');
 
 Route::get('gifts', [GiftController::class, 'index'])->name('gifts.index');
+Route::post('pix', PixController::class)->name('pix');
 
 Route::prefix('admin')->name('admin.')->middleware([
     'auth',
