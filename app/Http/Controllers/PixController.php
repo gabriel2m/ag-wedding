@@ -22,7 +22,7 @@ class PixController extends Controller
 
         $payload = $pixService->payload(
             $request->float('amount'),
-            "$request->id, {$request->string('message')->ascii()}"
+            "$request->id, {$request->string('message')->ascii()->lower()->trim()}"
         );
 
         return view('pix.show', [
