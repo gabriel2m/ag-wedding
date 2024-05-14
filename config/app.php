@@ -195,4 +195,10 @@ return [
     'admin' => [
         'email' => env('ADMIN_EMAIL'),
     ],
+
+    'pix' => [
+        'key' => env('PIX_KEY'),
+        'name' => env('PIX_NAME'),
+        'city' => env('PIX_CITY'),
+    ],
 ];
