@@ -257,6 +257,21 @@
         </div>
         <div
             class="font-poppins flex min-h-dvh flex-col justify-center gap-20 py-20"
+            id="area-6"
+        >
+            <h3 class="text-center font-semibold text-slate-900">
+                Lista de Presentes
+            </h3>
+
+            <div
+                class="flex flex-wrap justify-around gap-12"
+                hx-get="{{ route('gifts.index') }}"
+                hx-trigger="load"
+            >
+            </div>
+        </div>
+        <div
+            class="font-poppins flex min-h-dvh flex-col justify-center gap-20 py-20"
             id="area-5"
         >
             <h3 class="text-center font-semibold text-slate-900">
@@ -271,21 +286,6 @@
             >
                 Carregando…
             </iframe>
-        </div>
-        <div
-            class="font-poppins flex min-h-dvh flex-col justify-center gap-20 py-20"
-            id="area-6"
-        >
-            <h3 class="text-center font-semibold text-slate-900">
-                Lista de Presentes
-            </h3>
-
-            <div
-                class="flex flex-wrap justify-around gap-12"
-                hx-get="{{ route('gifts.index') }}"
-                hx-trigger="load"
-            >
-            </div>
         </div>
     </div>
 @overwrite
