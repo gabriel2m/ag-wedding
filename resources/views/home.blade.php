@@ -42,8 +42,8 @@
                 <a href="#area-2">Contagem regressiva</a>
                 <a href="#area-3">Galeria</a>
                 <a href="#area-4">Locais e horários</a>
-                <a href="#area-5">Confirmação</a>
                 <a href="#area-6">Lista de Presentes</a>
+                <a href="#area-5">Confirmação</a>
             </nav>
             <x-heroicon-o-bars-3
                 class="block h-9 md:hidden"
@@ -57,8 +57,8 @@
                 <a href="#area-2">Contagem regressiva</a>
                 <a href="#area-3">Galeria</a>
                 <a href="#area-4">Locais e horários</a>
-                <a href="#area-5">Confirmação</a>
                 <a href="#area-6">Lista de Presentes</a>
+                <a href="#area-5">Confirmação</a>
             </nav>
         </div>
     </div>
